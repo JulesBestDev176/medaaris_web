@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin:0; color:#0B1526; font-family:'Hanken Grotesk',system-ui,sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; background:#F4F7FE; }
+  a { color:#1B62F0; text-decoration:none; }
+  a:hover { color:#0A46A8; }
+  ::selection { background:#C9DBFF; }
+  h1,h2,h3 { font-family:'Bricolage Grotesque',sans-serif; }
+  @keyframes rise { from{ opacity:0; transform:translateY(20px);} to{ opacity:1; transform:none;} }
+  @keyframes floatB { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(10px);} }
+  @keyframes pop { 0%{ transform:scale(.6); opacity:0;} 60%{ transform:scale(1.08);} 100%{ transform:scale(1); opacity:1;} }
+  input, textarea, select { font-family:'Hanken Grotesk', sans-serif; }
+  input::placeholder, textarea::placeholder { color:#98A2B8; }
+</style>
+</helmet>
+<div style="width:100%;">
+
+  <dc-import name="Navbar" active="contact" hint-size="100%,84px"></dc-import>
+
+  <!-- ===== HEADER ===== -->
+  <section style="position:relative; overflow:hidden;">
+    <div style="position:absolute; top:-160px; right:-100px; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle,rgba(27,98,240,.14),transparent 66%);"></div>
+    <div style="position:absolute; top:40px; left:-140px; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle,rgba(109,75,246,.13),transparent 66%);"></div>
+    <div style="position:relative; max-width:900px; margin:0 auto; padding:clamp(40px,6vw,72px) clamp(20px,5vw,40px) clamp(20px,3vw,32px); text-align:center;">
+      <div style="display:inline-flex; align-items:center; gap:9px; padding:7px 14px; background:#fff; border:1px solid #E1E8F7; border-radius:999px; font:600 13px 'Hanken Grotesk'; color:#28324A; margin-bottom:22px; box-shadow:0 3px 12px rgba(11,21,38,.05); animation:rise .6s both;">
+        <span style="width:7px; height:7px; border-radius:999px; background:#10B981;"></span> Réponse sous 24 h ouvrées
+      </div>
+      <h1 style="font:700 clamp(34px,5vw,56px)/1.05 'Bricolage Grotesque'; letter-spacing:-0.03em; margin:0 0 16px; animation:rise .7s .08s both;">Parlons de votre <span style="background:linear-gradient(120deg,#1B62F0,#6D4BF6); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">établissement</span></h1>
+      <p style="font:400 clamp(16px,2vw,19px)/1.6 'Hanken Grotesk'; color:#56617A; max-width:520px; margin:0 auto; animation:rise .7s .16s both;">Une question, un besoin de démonstration ou un devis ? Écrivez-nous, notre équipe vous recontacte rapidement.</p>
+    </div>
+  </section>
+
+  <!-- ===== CONTENU ===== -->
+  <section style="max-width:1100px; margin:0 auto; padding:clamp(28px,4vw,44px) clamp(20px,5vw,40px) clamp(56px,8vw,96px); display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px; align-items:start;">
+
+    <!-- Coordonnées -->
+    <div style="display:flex; flex-direction:column; gap:16px; animation:rise .7s .2s both;">
+      <sc-for list="{{ contacts }}" as="c" hint-placeholder-count="3">
+        <div style="display:flex; gap:15px; background:#fff; border:1px solid #E6EBF5; border-radius:18px; padding:22px; transition:all .22s;" style-hover="box-shadow:0 16px 36px rgba(11,21,38,.09); transform:translateY(-3px); border-color:#C9D9FF;">
+          <span style="flex:none; width:48px; height:48px; border-radius:14px; background: {{ c.bg }}; color: {{ c.color }}; display:flex; align-items:center; justify-content:center;">{{ c.icon }}</span>
+          <div><div style="font:700 16px 'Bricolage Grotesque'; margin-bottom:3px;">{{ c.title }}</div><div style="font:500 15px 'Hanken Grotesk'; color:#1B62F0;">{{ c.value }}</div><div style="font:400 13px 'Hanken Grotesk'; color:#98A2B8; margin-top:2px;">{{ c.note }}</div></div>
+        </div>
+      </sc-for>
+      <div style="position:relative; overflow:hidden; background:linear-gradient(135deg,#1B62F0,#5A34E6); border-radius:18px; padding:24px; color:#fff;">
+        <div style="position:absolute; bottom:-40px; right:-20px; width:160px; height:160px; border-radius:50%; background:rgba(34,204,238,.2); animation:floatB 6s ease-in-out infinite;"></div>
+        <div style="position:relative; font:700 17px 'Bricolage Grotesque'; margin-bottom:8px;">Préférez une démo en direct ?</div>
+        <div style="position:relative; font:400 14px/1.55 'Hanken Grotesk'; opacity:.9; margin-bottom:16px;">Réservez un créneau de 30 minutes avec un conseiller.</div>
+        <a href="Contact.dc.html" style="position:relative; display:inline-flex; align-items:center; gap:8px; padding:11px 18px; border-radius:11px; background:#fff; color:#1B62F0; font:600 14px 'Hanken Grotesk'; transition:transform .18s;" style-hover="transform:translateY(-2px);">Planifier une démo <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Formulaire -->
+    <div style="grid-column:span 1; min-width:0; background:#fff; border:1px solid #E6EBF5; border-radius:22px; padding:clamp(24px,3vw,36px); box-shadow:0 20px 50px rgba(11,21,38,.07); animation:rise .7s .28s both;">
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div style="text-align:center; padding:40px 12px;">
+          <div style="width:72px; height:72px; margin:0 auto 22px; border-radius:20px; background:#E9FBF4; color:#0E9F70; display:flex; align-items:center; justify-content:center; animation:pop .5s both;"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <h2 style="font:700 26px 'Bricolage Grotesque'; margin:0 0 10px;">Message envoyé !</h2>
+          <p style="font:400 16px/1.6 'Hanken Grotesk'; color:#56617A; max-width:360px; margin:0 auto 24px;">Merci de votre intérêt pour MEDAARIS. Notre équipe vous répond sous 24 heures ouvrées.</p>
+          <button onClick="{{ reset }}" style="cursor:pointer; padding:13px 24px; border-radius:12px; background:#EEF2FE; color:#1B62F0; border:none; font:600 15px 'Hanken Grotesk';">Envoyer un autre message</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <h2 style="font:700 24px 'Bricolage Grotesque'; letter-spacing:-0.01em; margin:0 0 6px;">Écrivez-nous</h2>
+          <p style="font:400 15px 'Hanken Grotesk'; color:#56617A; margin:0 0 26px;">Les champs marqués d'un astérisque (*) sont obligatoires.</p>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+            <div>
+              <label style="display:block; font:600 13px 'Hanken Grotesk'; color:#28324A; margin-bottom:7px;">Nom complet *</label>
+              <input placeholder="Amina Benali" style="width:100%; padding:12px 14px; border-radius:12px; border:1.5px solid #DBE2F0; font-size:15px; color:#0B1526; outline:none; transition:all .16s;" style-focus="border-color:#1B62F0; box-shadow:0 0 0 4px rgba(27,98,240,.14);">
+            </div>
+            <div>
+              <label style="display:block; font:600 13px 'Hanken Grotesk'; color:#28324A; margin-bottom:7px;">Établissement *</label>
+              <input placeholder="Lycée Averroès" style="width:100%; padding:12px 14px; border-radius:12px; border:1.5px solid #DBE2F0; font-size:15px; color:#0B1526; outline:none; transition:all .16s;" style-focus="border-color:#1B62F0; box-shadow:0 0 0 4px rgba(27,98,240,.14);">
+            </div>
+            <div>
+              <label style="display:block; font:600 13px 'Hanken Grotesk'; color:#28324A; margin-bottom:7px;">E-mail *</label>
+              <input placeholder="vous@ecole.fr" style="width:100%; padding:12px 14px; border-radius:12px; border:1.5px solid #DBE2F0; font-size:15px; color:#0B1526; outline:none; transition:all .16s;" style-focus="border-color:#1B62F0; box-shadow:0 0 0 4px rgba(27,98,240,.14);">
+            </div>
+            <div>
+              <label style="display:block; font:600 13px 'Hanken Grotesk'; color:#28324A; margin-bottom:7px;">Téléphone</label>
+              <input placeholder="+212 6 00 00 00 00" style="width:100%; padding:12px 14px; border-radius:12px; border:1.5px solid #DBE2F0; font-size:15px; color:#0B1526; outline:none; transition:all .16s;" style-focus="border-color:#1B62F0; box-shadow:0 0 0 4px rgba(27,98,240,.14);">
+            </div>
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <label style="display:block; font:600 13px 'Hanken Grotesk'; color:#28324A; margin-bottom:7px;">Sujet</label>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <sc-for list="{{ subjects }}" as="sub" hint-placeholder-count="4">
+                <button onClick="{{ sub.onClick }}" style="cursor:pointer; padding:9px 15px; border-radius:999px; font:600 13px 'Hanken Grotesk'; border:1.5px solid {{ sub.border }}; background: {{ sub.bg }}; color: {{ sub.color }}; transition:all .16s;">{{ sub.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="margin-bottom:18px;">
+            <label style="display:block; font:600 13px 'Hanken Grotesk'; color:#28324A; margin-bottom:7px;">Votre message *</label>
+            <textarea rows="4" placeholder="Décrivez votre besoin, le nombre d'élèves, vos échéances…" style="width:100%; padding:12px 14px; border-radius:12px; border:1.5px solid #DBE2F0; font-size:15px; color:#0B1526; outline:none; resize:vertical; transition:all .16s;" style-focus="border-color:#1B62F0; box-shadow:0 0 0 4px rgba(27,98,240,.14);"></textarea>
+          </div>
+
+          <label onClick="{{ toggleConsent }}" style="display:flex; align-items:flex-start; gap:11px; cursor:pointer; margin-bottom:22px; font:400 13px/1.5 'Hanken Grotesk'; color:#56617A;">
+            <span style="flex:none; width:22px; height:22px; border-radius:7px; border:1.5px solid {{ consentBorder }}; background: {{ consentBg }}; display:flex; align-items:center; justify-content:center; transition:all .16s;">
+              <sc-if value="{{ consent }}" hint-placeholder-val="{{ false }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></sc-if>
+            </span>
+            <span>J'accepte que mes données soient utilisées pour être recontacté(e). Elles ne seront jamais partagées à des tiers.</span>
+          </label>
+
+          <button onClick="{{ submit }}" style="width:100%; border:none; cursor:pointer; padding:15px; border-radius:13px; background:linear-gradient(135deg,#1B62F0,#6D4BF6); color:#fff; font:600 16px 'Hanken Grotesk'; box-shadow:0 12px 26px rgba(27,98,240,.32); transition:all .2s cubic-bezier(.2,.7,.2,1);" style-hover="transform:translateY(-2px); box-shadow:0 16px 32px rgba(27,98,240,.44);">Envoyer le message</button>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,420px"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1180px&quot;,&quot;height&quot;:&quot;820px&quot;}}">
+class Component extends DCLogic {
+  state = { sent: false, consent: false, subject: 'Démonstration' };
+
+  icon(path) { return React.createElement('svg', { width: 22, height: 22, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, path.map((d, i) => React.createElement('path', { key: i, d }))); }
+
+  renderVals() {
+    const contacts = [
+      { title: 'Par e-mail', value: 'contact@medaaris.app', note: 'Réponse sous 24 h ouvrées', bg: '#EEF3FF', color: '#1B62F0', icon: this.icon(['M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z', 'm22 6-10 7L2 6']) },
+      { title: 'Par téléphone', value: '+212 5 20 00 00 00', note: 'Lun – Ven, 9 h – 18 h', bg: '#F0ECFF', color: '#6D4BF6', icon: this.icon(['M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z']) },
+      { title: 'Nos bureaux', value: 'Casablanca, Maroc', note: 'Sur rendez-vous', bg: '#E9FBF4', color: '#0E9F70', icon: this.icon(['M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z', 'M12 10a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z']) },
+    ];
+    const labels = ['Démonstration', 'Devis / tarifs', 'Question technique', 'Autre'];
+    const subjects = labels.map(l => {
+      const on = this.state.subject === l;
+      return { label: l, onClick: () => this.setState({ subject: l }), border: on ? '#1B62F0' : '#DBE2F0', bg: on ? '#EEF2FE' : '#fff', color: on ? '#1B62F0' : '#56617A' };
+    });
+    return {
+      contacts, subjects,
+      sent: this.state.sent, notSent: !this.state.sent,
+      consent: this.state.consent,
+      consentBg: this.state.consent ? '#1B62F0' : '#fff',
+      consentBorder: this.state.consent ? '#1B62F0' : '#CBD3E3',
+      toggleConsent: () => this.setState(s => ({ consent: !s.consent })),
+      submit: () => this.setState({ sent: true }),
+      reset: () => this.setState({ sent: false, consent: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin:0; color:#0B1526; font-family:'Hanken Grotesk',system-ui,sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; background:#F4F7FE; }
+  a { color:#1B62F0; text-decoration:none; }
+  a:hover { color:#0A46A8; }
+  ::selection { background:#C9DBFF; }
+  h1,h2,h3 { font-family:'Bricolage Grotesque',sans-serif; }
+  @keyframes rise { from{ opacity:0; transform:translateY(20px);} to{ opacity:1; transform:none;} }
+  @keyframes revIn { from{ opacity:0; transform:translateY(30px);} to{ opacity:1; transform:none;} }
+  .reveal { animation: revIn .8s both; animation-timeline: view(); animation-range: entry 0% cover 26%; }
+</style>
+</helmet>
+<div style="width:100%;">
+
+  <dc-import name="Navbar" active="tarifs" hint-size="100%,84px"></dc-import>
+
+  <section style="position:relative; overflow:hidden;">
+    <div style="position:absolute; top:-160px; right:-100px; width:480px; height:480px; border-radius:50%; background:radial-gradient(circle,rgba(27,98,240,.14),transparent 66%);"></div>
+    <div style="position:absolute; top:40px; left:-140px; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle,rgba(109,75,246,.13),transparent 66%);"></div>
+    <div style="position:relative; max-width:820px; margin:0 auto; padding:clamp(40px,6vw,72px) clamp(20px,5vw,40px) clamp(12px,2vw,24px); text-align:center;">
+      <div style="display:inline-flex; align-items:center; gap:9px; padding:7px 14px; background:#fff; border:1px solid #E1E8F7; border-radius:999px; font:600 13px 'Hanken Grotesk'; color:#28324A; margin-bottom:22px; box-shadow:0 3px 12px rgba(11,21,38,.05); animation:rise .6s both;">Tarifs transparents</div>
+      <h1 style="font:700 clamp(34px,5vw,56px)/1.05 'Bricolage Grotesque'; letter-spacing:-0.03em; margin:0 0 16px; animation:rise .7s .08s both;">Un tarif clair, <span style="background:linear-gradient(120deg,#1B62F0,#6D4BF6); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;">par élève</span></h1>
+      <p style="font:400 clamp(16px,2vw,19px)/1.6 'Hanken Grotesk'; color:#56617A; max-width:520px; margin:0 auto; animation:rise .7s .16s both;">Sans frais cachés, sans engagement. Vous ne payez que pour vos effectifs réels.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1120px; margin:0 auto; padding:clamp(28px,4vw,44px) clamp(20px,5vw,40px) clamp(40px,5vw,64px);">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:18px; align-items:stretch;">
+      <sc-for list="{{ plans }}" as="p" hint-placeholder-count="3">
+        <div class="reveal" style="position:relative; display:flex; flex-direction:column; background: {{ p.bg }}; color: {{ p.fg }}; border:1.5px solid {{ p.border }}; border-radius:22px; padding:32px 28px; box-shadow: {{ p.shadow }};">
+          <sc-if value="{{ p.popular }}" hint-placeholder-val="{{ false }}">
+            <span style="position:absolute; top:-13px; left:28px; padding:6px 15px; border-radius:999px; background:linear-gradient(135deg,#22CCEE,#1B62F0); color:#fff; font:700 12px 'Hanken Grotesk'; box-shadow:0 6px 16px rgba(27,98,240,.4);">Le plus choisi</span>
+          </sc-if>
+          <div style="font:600 15px 'Hanken Grotesk'; opacity:.82; margin-bottom:16px;">{{ p.name }}</div>
+          <div style="display:flex; align-items:baseline; gap:6px; margin-bottom:6px;"><span style="font:700 44px 'Bricolage Grotesque'; letter-spacing:-0.02em;">{{ p.price }}</span><span style="font:400 14px 'Hanken Grotesk'; opacity:.7;">{{ p.unit }}</span></div>
+          <div style="font:400 14px 'Hanken Grotesk'; opacity:.75; margin-bottom:24px; min-height:20px;">{{ p.note }}</div>
+          <a href="Contact.dc.html" style="text-align:center; width:100%; border:none; cursor:pointer; padding:14px; border-radius:13px; background: {{ p.btnBg }}; color: {{ p.btnFg }}; font:600 15px 'Hanken Grotesk'; margin-bottom:24px; transition:transform .16s;" style-hover="transform:translateY(-2px);">{{ p.cta }}</a>
+          <div style="display:flex; flex-direction:column; gap:13px;">
+            <sc-for list="{{ p.features }}" as="feat" hint-placeholder-count="5">
+              <div style="display:flex; align-items:flex-start; gap:11px; font:400 14px/1.4 'Hanken Grotesk';">
+                <svg style="flex:none; margin-top:2px; color: {{ p.check }};" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>{{ feat }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="text-align:center; margin-top:28px; font:400 14px 'Hanken Grotesk'; color:#6E7A93;">Tarifs indicatifs hors taxes. Remise dégressive au-delà de 1 000 élèves — <a href="Contact.dc.html">demandez un devis</a>.</div>
+  </section>
+
+  <!-- Comparatif compact -->
+  <section style="max-width:1120px; margin:0 auto; padding:0 clamp(20px,5vw,40px) clamp(40px,5vw,64px);">
+    <div class="reveal" style="background:#fff; border:1px solid #E6EBF5; border-radius:22px; overflow:hidden; box-shadow:0 12px 34px rgba(11,21,38,.06);">
+      <div style="padding:24px 28px; border-bottom:1px solid #EEF1F8;"><h2 style="font:700 22px 'Bricolage Grotesque'; margin:0;">Ce qui est inclus</h2></div>
+      <sc-for list="{{ compare }}" as="row" hint-placeholder-count="6">
+        <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; align-items:center; padding:15px 28px; border-bottom:1px solid #F2F5FB; font:500 14px 'Hanken Grotesk';">
+          <div style="color:#28324A;">{{ row.label }}</div>
+          <div style="text-align:center;">{{ row.a }}</div>
+          <div style="text-align:center;">{{ row.b }}</div>
+          <div style="text-align:center;">{{ row.c }}</div>
+        </div>
+      </sc-for>
+      <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; padding:14px 28px; font:700 12px 'Hanken Grotesk'; color:#98A2B8; letter-spacing:.04em; text-transform:uppercase;">
+        <div></div><div style="text-align:center;">Essentiel</div><div style="text-align:center; color:#1B62F0;">Établissement</div><div style="text-align:center;">Réseau</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="max-width:800px; margin:0 auto; padding:clamp(12px,2vw,24px) clamp(20px,5vw,40px) clamp(56px,8vw,96px);">
+    <div class="reveal" style="text-align:center; margin-bottom:clamp(28px,4vw,44px);">
+      <h2 style="font:700 clamp(28px,4vw,40px)/1.1 'Bricolage Grotesque'; letter-spacing:-0.025em; margin:0;">Questions sur les tarifs</h2>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <sc-for list="{{ faqItems }}" as="item" hint-placeholder-count="4">
+        <div style="background:#fff; border:1px solid #E6EBF5; border-radius:16px; overflow:hidden;">
+          <button onClick="{{ item.onToggle }}" style="width:100%; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 24px; border:none; background:none; text-align:left; font:600 clamp(15px,2vw,18px) 'Bricolage Grotesque'; color:#0B1526;">
+            <span>{{ item.q }}</span>
+            <span style="flex:none; width:30px; height:30px; border-radius:10px; background: {{ item.iconBg }}; color: {{ item.iconColor }}; display:flex; align-items:center; justify-content:center; font:600 19px 'Hanken Grotesk';">{{ item.sign }}</span>
+          </button>
+          <sc-if value="{{ item.open }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:0 24px 22px; font:400 15px/1.65 'Hanken Grotesk'; color:#56617A;">{{ item.a }}</div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <dc-import name="Footer" hint-size="100%,420px"></dc-import>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1180px&quot;,&quot;height&quot;:&quot;860px&quot;}}">
+class Component extends DCLogic {
+  state = { faq: 0 };
+  renderVals() {
+    const plans = [
+      { name: 'Essentiel', price: '2,90 €', unit: '/ élève / an', note: 'Pour les petites structures.', bg: '#fff', fg: '#0B1526', border: '#E6EBF5', shadow: '0 1px 3px rgba(11,21,38,.05)', btnBg: '#EEF2FE', btnFg: '#1B62F0', check: '#1B62F0', cta: 'Commencer', popular: false, features: ['Inscriptions & dossiers', 'Présences & emplois du temps', 'Communication familles', 'Support par e-mail'] },
+      { name: 'Établissement', price: '4,90 €', unit: '/ élève / an', note: 'Le choix des écoles.', bg: '#0B1120', fg: '#fff', border: 'transparent', shadow: '0 24px 54px rgba(11,17,32,.34)', btnBg: 'linear-gradient(135deg,#1B62F0,#6D4BF6)', btnFg: '#fff', check: '#5EEAD4', cta: 'Choisir cette formule', popular: true, features: ['Tout Essentiel, plus\u00A0:', 'Notes & bulletins', 'Facturation & paiements', 'Support prioritaire', 'Rapports & statistiques'] },
+      { name: 'Réseau', price: 'Sur mesure', unit: '', note: 'Multi-établissements.', bg: '#fff', fg: '#0B1526', border: '#E6EBF5', shadow: '0 1px 3px rgba(11,21,38,.05)', btnBg: '#0B1120', btnFg: '#fff', check: '#6D4BF6', cta: 'Nous contacter', popular: false, features: ['Tout Établissement, plus\u00A0:', 'Console multi-écoles', 'Intégrations dédiées', 'Accompagnement sur site', 'Interlocuteur unique'] },
+    ];
+    const y = '\u2713', n = '—';
+    const compareSrc = [
+      { label: 'Inscriptions & dossiers', a: y, b: y, c: y },
+      { label: 'Notes & bulletins', a: n, b: y, c: y },
+      { label: 'Facturation & paiements', a: n, b: y, c: y },
+      { label: 'Console multi-établissements', a: n, b: n, c: y },
+      { label: 'Support prioritaire', a: n, b: y, c: y },
+      { label: 'Accompagnement sur site', a: n, b: n, c: y },
+    ];
+    const compare = compareSrc.map(r => ({
+      label: r.label,
+      a: r.a === y ? React.createElement('span', { style: { color: '#0E9F70', fontWeight: 700 } }, y) : React.createElement('span', { style: { color: '#C3CBDB' } }, n),
+      b: r.b === y ? React.createElement('span', { style: { color: '#0E9F70', fontWeight: 700 } }, y) : React.createElement('span', { style: { color: '#C3CBDB' } }, n),
+      c: r.c === y ? React.createElement('span', { style: { color: '#0E9F70', fontWeight: 700 } }, y) : React.createElement('span', { style: { color: '#C3CBDB' } }, n),
+    }));
+    const faqSrc = [
+      { q: 'Y a-t-il des frais d\u2019installation ?', a: 'Non. Le paramétrage, l\u2019import de vos données et la formation initiale sont inclus dans l\u2019abonnement, sans frais cachés.' },
+      { q: 'Puis-je changer de formule en cours d\u2019année ?', a: 'Oui, vous pouvez passer à une formule supérieure à tout moment. L\u2019ajustement est calculé au prorata.' },
+      { q: 'Comment sont comptés les élèves ?', a: 'La facturation se base sur le nombre d\u2019élèves actifs dans l\u2019année scolaire, revu une fois par an.' },
+      { q: 'Existe-t-il une période d\u2019essai ?', a: 'Nous proposons une démonstration complète et un environnement de test avant tout engagement.' },
+    ];
+    const faqItems = faqSrc.map((it, i) => {
+      const open = this.state.faq === i;
+      return { ...it, open, sign: open ? '\u2212' : '+', iconBg: open ? '#1B62F0' : '#EEF2FE', iconColor: open ? '#fff' : '#6E7A93', onToggle: () => this.setState(s => ({ faq: s.faq === i ? -1 : i })) };
+    });
+    return { plans, compare, faqItems };
+  }
+}
+</script>
+</body>
+</html>

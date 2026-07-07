@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #F4F6FA; color: #0F172A; font-family: 'IBM Plex Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #0179FF; text-decoration: none; }
+  a:hover { color: #0062D6; }
+  ::selection { background: #D4E7FF; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 999px; border: 2px solid #F4F6FA; }
+  @keyframes mdspin { to { transform: rotate(360deg); } }
+  @keyframes mdshimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  @keyframes mdrise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes mdfade { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</helmet>
+<div style="display:flex; min-height:100vh; width:100%;">
+
+  <aside style="position:sticky; top:0; align-self:flex-start; width:264px; height:100vh; flex:none; background:#FFFFFF; border-right:1px solid #E2E8F0; padding:28px 20px; overflow-y:auto;">
+    <div style="display:flex; align-items:center; gap:11px; margin-bottom:28px;">
+      <img src="uploads/medaaris-logo.jpeg" alt="MEDAARIS" style="height:40px; width:auto; border-radius:8px;">
+    </div>
+    <div style="font-size:11px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:#94A3B8; padding:0 10px 8px;">Fondations</div>
+    <nav style="display:flex; flex-direction:column; gap:2px; margin-bottom:20px;">
+      <a href="#couleurs" style="padding:8px 10px; border-radius:8px; font-size:14px; color:#334155;" style-hover="background:#F1F5F9; color:#0179FF;">Palette de couleurs</a>
+      <a href="#typo" style="padding:8px 10px; border-radius:8px; font-size:14px; color:#334155;" style-hover="background:#F1F5F9; color:#0179FF;">Typographie</a>
+      <a href="#espacement" style="padding:8px 10px; border-radius:8px; font-size:14px; color:#334155;" style-hover="background:#F1F5F9; color:#0179FF;">Espacements &amp; grille</a>
+      <a href="#rayons" style="padding:8px 10px; border-radius:8px; font-size:14px; color:#334155;" style-hover="background:#F1F5F9; color:#0179FF;">Rayons &amp; ombres</a>
+    </nav>
+    <div style="font-size:11px; font-weight:600; letter-spacing:.09em; text-transform:uppercase; color:#94A3B8; padding:0 10px 8px;">Composants</div>
+    <nav style="display:flex; flex-direction:column; gap:2px;">
+      <a href="#boutons" style="padding:8px 10px; border-radius:8px; font-size:14px; color:#334155;" style-hover="background:#F1F5F9; color:#0179FF;">Boutons</a>
+      <a href="#badges" style="padding:8px 10px; border-radius:8px; font-size:14px; color:#334155;" style-hover="background:#F1F5F9; color:#0179FF;">Badges &amp; puces</a>
+      <a href="#formulaires" style="padding:8px 10px; border-radius:8px; font-size:14px; color:#334155;" style-hover="background:#F1F5F9; color:#0179FF;">Champs de formulaire</a>
+      <a href="#cards" style="padding:8px 10px; border-radius:8px; font-size:14px; color:#334155;" style-hover="background:#F1F5F9; color:#0179FF;">Cards</a>
+      <a href="#alertes" style="padding:8px 10px; border-radius:8px; font-size:14px; color:#334155;" style-hover="background:#F1F5F9; color:#0179FF;">Alertes &amp; toast</a>
+      <a href="#tabs" style="padding:8px 10px; border-radius:8px; font-size:14px; color:#334155;" style-hover="background:#F1F5F9; color:#0179FF;">Tabs &amp; accordéon</a>
+      <a href="#table" style="padding:8px 10px; border-radius:8px; font-size:14px; color:#334155;" style-hover="background:#F1F5F9; color:#0179FF;">Tables &amp; progress</a>
+      <a href="#navigation" style="padding:8px 10px; border-radius:8px; font-size:14px; color:#334155;" style-hover="background:#F1F5F9; color:#0179FF;">Navigation</a>
+      <a href="#footer" style="padding:8px 10px; border-radius:8px; font-size:14px; color:#334155;" style-hover="background:#F1F5F9; color:#0179FF;">Footer</a>
+    </nav>
+    <div style="margin-top:24px; padding:14px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px; font-size:12px; color:#64748B; line-height:1.5;">
+      Design System v1.0<br>Gestion d'établissement scolaire
+    </div>
+  </aside>
+
+  <main style="flex:1; min-width:0;">
+
+    <header style="padding:56px 64px 40px; background:linear-gradient(160deg,#FFFFFF 0%,#EAF3FF 100%); border-bottom:1px solid #E2E8F0;">
+      <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 12px; background:#FFFFFF; border:1px solid #D4E7FF; border-radius:999px; font-size:12px; font-weight:600; color:#0179FF; margin-bottom:20px;">
+        <span style="width:7px; height:7px; border-radius:999px; background:#0179FF; display:inline-block;"></span>
+        Design System
+      </div>
+      <h1 style="font-size:44px; line-height:1.1; font-weight:700; margin:0 0 14px; letter-spacing:-0.02em;">MEDAARIS — Système de design</h1>
+      <p style="font-size:18px; line-height:1.6; color:#475569; max-width:640px; margin:0;">Bibliothèque de composants et fondations visuelles pour la plateforme de gestion d'établissement scolaire. Professionnel, rassurant, accessible — pensé pour le français, l'anglais et l'arabe.</p>
+    </header>
+
+    <div style="padding:8px 64px 96px; max-width:1180px;">
+
+      <!-- ============ COULEURS ============ -->
+      <section id="couleurs" style="padding-top:56px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0179FF; margin-bottom:8px;">Fondations</div>
+        <h2 style="font-size:30px; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em;">Palette de couleurs</h2>
+        <p style="font-size:16px; color:#64748B; margin:0 0 32px; max-width:620px; line-height:1.6;">Le bleu MEDAARIS porte l'action et la confiance. Les gris slate structurent l'interface. Chaque teinte dispose d'une échelle complète pour hiérarchiser sans multiplier les couleurs.</p>
+
+        <h3 style="font-size:16px; font-weight:600; margin:0 0 12px;">Bleu — couleur principale</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(96px,1fr)); gap:8px; margin-bottom:36px;">
+          <sc-for list="{{ blue }}" as="s" hint-placeholder-count="10">
+            <div style="border-radius:10px; overflow:hidden; border:1px solid #E2E8F0;">
+              <div style="height:64px; background: {{ s.hex }};"></div>
+              <div style="padding:8px 10px; background:#fff;">
+                <div style="font-size:12px; font-weight:600; color:#0F172A;">{{ s.name }}</div>
+                <div style="font-size:11px; color:#94A3B8; font-family:'IBM Plex Mono',monospace;">{{ s.hex }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <h3 style="font-size:16px; font-weight:600; margin:0 0 12px;">Slate — neutres</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(96px,1fr)); gap:8px; margin-bottom:36px;">
+          <sc-for list="{{ slate }}" as="s" hint-placeholder-count="11">
+            <div style="border-radius:10px; overflow:hidden; border:1px solid #E2E8F0;">
+              <div style="height:64px; background: {{ s.hex }};"></div>
+              <div style="padding:8px 10px; background:#fff;">
+                <div style="font-size:12px; font-weight:600; color:#0F172A;">{{ s.name }}</div>
+                <div style="font-size:11px; color:#94A3B8; font-family:'IBM Plex Mono',monospace;">{{ s.hex }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <h3 style="font-size:16px; font-weight:600; margin:0 0 12px;">Couleurs d'état</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px; margin-bottom:36px;">
+          <sc-for list="{{ states }}" as="s" hint-placeholder-count="4">
+            <div style="border-radius:12px; border:1px solid #E2E8F0; overflow:hidden; background:#fff;">
+              <div style="height:56px; background: {{ s.bg }}; display:flex; align-items:center; padding:0 16px;">
+                <span style="width:22px; height:22px; border-radius:999px; background: {{ s.hex }};"></span>
+              </div>
+              <div style="padding:12px 16px;">
+                <div style="font-size:14px; font-weight:600;">{{ s.label }}</div>
+                <div style="font-size:12px; color:#94A3B8; font-family:'IBM Plex Mono',monospace;">{{ s.hex }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <h3 style="font-size:16px; font-weight:600; margin:0 0 12px;">Dégradés</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px;">
+          <sc-for list="{{ gradients }}" as="g" hint-placeholder-count="3">
+            <div style="border-radius:14px; overflow:hidden; border:1px solid #E2E8F0;">
+              <div style="height:96px; background: {{ g.css }};"></div>
+              <div style="padding:12px 16px; background:#fff;">
+                <div style="font-size:14px; font-weight:600;">{{ g.label }}</div>
+                <div style="font-size:11px; color:#94A3B8; font-family:'IBM Plex Mono',monospace;">{{ g.code }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- ============ TYPOGRAPHIE ============ -->
+      <section id="typo" style="padding-top:72px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0179FF; margin-bottom:8px;">Fondations</div>
+        <h2 style="font-size:30px; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em;">Typographie</h2>
+        <p style="font-size:16px; color:#64748B; margin:0 0 28px; max-width:620px; line-height:1.6;">IBM Plex Sans pour le latin, IBM Plex Sans Arabic pour l'arabe — deux familles de la même origine graphique, pour une cohérence parfaite en contexte trilingue. IBM Plex Mono pour les données et le code.</p>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:28px;">
+          <div style="flex:1; min-width:200px; padding:20px 24px; background:#fff; border:1px solid #E2E8F0; border-radius:14px;">
+            <div style="font-size:12px; color:#94A3B8; margin-bottom:6px;">Latin — IBM Plex Sans</div>
+            <div style="font-size:34px; font-weight:600;">Aa Éé Çç</div>
+          </div>
+          <div style="flex:1; min-width:200px; padding:20px 24px; background:#fff; border:1px solid #E2E8F0; border-radius:14px;">
+            <div style="font-size:12px; color:#94A3B8; margin-bottom:6px;">Arabe — IBM Plex Sans Arabic</div>
+            <div dir="rtl" style="font-size:34px; font-weight:600; font-family:'IBM Plex Sans Arabic',sans-serif;">مَدَارِس</div>
+          </div>
+          <div style="flex:1; min-width:200px; padding:20px 24px; background:#fff; border:1px solid #E2E8F0; border-radius:14px;">
+            <div style="font-size:12px; color:#94A3B8; margin-bottom:6px;">Données — IBM Plex Mono</div>
+            <div style="font-size:34px; font-weight:500; font-family:'IBM Plex Mono',monospace;">0179</div>
+          </div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; overflow:hidden;">
+          <sc-for list="{{ typeScale }}" as="t" hint-placeholder-count="8">
+            <div style="display:flex; align-items:baseline; gap:24px; padding:18px 24px; border-bottom:1px solid #F1F5F9;">
+              <div style="width:150px; flex:none;">
+                <div style="font-size:13px; font-weight:600; color:#0F172A;">{{ t.name }}</div>
+                <div style="font-size:12px; color:#94A3B8; font-family:'IBM Plex Mono',monospace;">{{ t.spec }}</div>
+              </div>
+              <div style="flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size: {{ t.px }}; font-weight: {{ t.weight }}; line-height:1.2; letter-spacing:-0.01em;">Réussite scolaire</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- ============ ESPACEMENT ============ -->
+      <section id="espacement" style="padding-top:72px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0179FF; margin-bottom:8px;">Fondations</div>
+        <h2 style="font-size:30px; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em;">Espacements &amp; grille</h2>
+        <p style="font-size:16px; color:#64748B; margin:0 0 28px; max-width:620px; line-height:1.6;">Échelle basée sur 4px. Une trame cohérente garantit un rythme vertical régulier sur toutes les pages et tous les points de rupture.</p>
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; padding:24px;">
+          <sc-for list="{{ spacing }}" as="sp" hint-placeholder-count="10">
+            <div style="display:flex; align-items:center; gap:20px; padding:7px 0;">
+              <div style="width:70px; font-size:13px; font-weight:600;">{{ sp.name }}</div>
+              <div style="width:56px; font-size:12px; color:#94A3B8; font-family:'IBM Plex Mono',monospace;">{{ sp.px }}</div>
+              <div style="height:16px; border-radius:4px; background:#0179FF; width: {{ sp.px }};"></div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- ============ RAYONS & OMBRES ============ -->
+      <section id="rayons" style="padding-top:72px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0179FF; margin-bottom:8px;">Fondations</div>
+        <h2 style="font-size:30px; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em;">Rayons &amp; ombres</h2>
+        <p style="font-size:16px; color:#64748B; margin:0 0 28px; max-width:620px; line-height:1.6;">Coins arrondis progressifs et élévations douces. Les ombres restent subtiles pour préserver le caractère institutionnel.</p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; margin-bottom:32px;">
+          <sc-for list="{{ radii }}" as="r" hint-placeholder-count="6">
+            <div style="text-align:center;">
+              <div style="height:90px; background:#EAF3FF; border:1.5px solid #0179FF; border-radius: {{ r.px }};"></div>
+              <div style="font-size:13px; font-weight:600; margin-top:10px;">{{ r.name }}</div>
+              <div style="font-size:12px; color:#94A3B8; font-family:'IBM Plex Mono',monospace;">{{ r.px }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:20px;">
+          <sc-for list="{{ shadows }}" as="sh" hint-placeholder-count="5">
+            <div style="text-align:center;">
+              <div style="height:96px; background:#fff; border-radius:14px; box-shadow: {{ sh.css }};"></div>
+              <div style="font-size:13px; font-weight:600; margin-top:14px;">{{ sh.name }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- ============ BOUTONS ============ -->
+      <section id="boutons" style="padding-top:72px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0179FF; margin-bottom:8px;">Composants</div>
+        <h2 style="font-size:30px; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em;">Boutons</h2>
+        <p style="font-size:16px; color:#64748B; margin:0 0 28px; max-width:620px; line-height:1.6;">Hiérarchie claire : une seule action principale par vue. Trois tailles, états au survol et focus visible pour l'accessibilité clavier.</p>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; padding:32px;">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-bottom:24px;">
+            <button style="border:none; cursor:pointer; padding:11px 20px; border-radius:10px; background:#0179FF; color:#fff; font:600 15px 'IBM Plex Sans'; box-shadow:0 4px 12px rgba(1,121,255,.28); transition:all .18s;" style-hover="background:#0062D6; transform:translateY(-1px);">Demander une démo</button>
+            <button style="cursor:pointer; padding:11px 20px; border-radius:10px; background:#fff; color:#0179FF; border:1.5px solid #A9CFFF; font:600 15px 'IBM Plex Sans'; transition:all .18s;" style-hover="border-color:#0179FF; background:#F5F9FF;">Secondaire</button>
+            <button style="cursor:pointer; padding:11px 20px; border-radius:10px; background:#F1F5F9; color:#334155; border:none; font:600 15px 'IBM Plex Sans'; transition:all .18s;" style-hover="background:#E2E8F0;">Discret</button>
+            <button style="cursor:pointer; padding:11px 14px; border-radius:10px; background:transparent; color:#0179FF; border:none; font:600 15px 'IBM Plex Sans';" style-hover="background:#EAF3FF;">Lien</button>
+            <button style="cursor:pointer; padding:11px 20px; border-radius:10px; background:#E11D2E; color:#fff; border:none; font:600 15px 'IBM Plex Sans'; transition:all .18s;" style-hover="background:#C4162A;">Supprimer</button>
+            <button disabled style="padding:11px 20px; border-radius:10px; background:#E2E8F0; color:#94A3B8; border:none; font:600 15px 'IBM Plex Sans'; cursor:not-allowed;">Désactivé</button>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; align-items:center; gap:14px; border-top:1px solid #F1F5F9; padding-top:24px;">
+            <button style="border:none; cursor:pointer; padding:8px 14px; border-radius:8px; background:#0179FF; color:#fff; font:600 13px 'IBM Plex Sans';">Petit</button>
+            <button style="border:none; cursor:pointer; padding:11px 20px; border-radius:10px; background:#0179FF; color:#fff; font:600 15px 'IBM Plex Sans';">Moyen</button>
+            <button style="border:none; cursor:pointer; padding:15px 28px; border-radius:12px; background:#0179FF; color:#fff; font:600 17px 'IBM Plex Sans';">Grand</button>
+            <button style="border:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px; padding:11px 20px; border-radius:10px; background:#0179FF; color:#fff; font:600 15px 'IBM Plex Sans';">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              Avec icône
+            </button>
+            <button style="border:none; cursor:pointer; width:42px; height:42px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; background:#F1F5F9; color:#334155;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ BADGES ============ -->
+      <section id="badges" style="padding-top:72px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0179FF; margin-bottom:8px;">Composants</div>
+        <h2 style="font-size:30px; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em;">Badges &amp; puces de statut</h2>
+        <p style="font-size:16px; color:#64748B; margin:0 0 28px; max-width:620px; line-height:1.6;">Pour signaler un état d'un coup d'œil : présence, paiement, publication. Toujours accompagnés d'un libellé, jamais de la couleur seule.</p>
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; padding:32px; display:flex; flex-wrap:wrap; gap:12px;">
+          <span style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:#E7F7EF; color:#0B7A47; font:600 13px 'IBM Plex Sans';"><span style="width:7px;height:7px;border-radius:999px;background:#129E5E;"></span>Présent</span>
+          <span style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:#FEF4E2; color:#9A5B00; font:600 13px 'IBM Plex Sans';"><span style="width:7px;height:7px;border-radius:999px;background:#E08A00;"></span>En attente</span>
+          <span style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:#FDECEE; color:#B01524; font:600 13px 'IBM Plex Sans';"><span style="width:7px;height:7px;border-radius:999px;background:#E11D2E;"></span>Absent</span>
+          <span style="display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:#EAF3FF; color:#0062D6; font:600 13px 'IBM Plex Sans';"><span style="width:7px;height:7px;border-radius:999px;background:#0179FF;"></span>Nouveau</span>
+          <span style="padding:5px 12px; border-radius:999px; background:#F1F5F9; color:#475569; font:600 13px 'IBM Plex Sans';">Brouillon</span>
+          <span style="padding:5px 12px; border-radius:999px; background:#0F172A; color:#fff; font:600 13px 'IBM Plex Sans';">Premium</span>
+          <span style="padding:3px 8px; border-radius:6px; background:#0179FF; color:#fff; font:600 11px 'IBM Plex Mono';">3e</span>
+          <span style="padding:5px 10px; border-radius:8px; border:1.5px solid #A9CFFF; color:#0062D6; font:600 13px 'IBM Plex Sans';">Contour</span>
+        </div>
+      </section>
+
+      <!-- ============ FORMULAIRES ============ -->
+      <section id="formulaires" style="padding-top:72px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0179FF; margin-bottom:8px;">Composants</div>
+        <h2 style="font-size:30px; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em;">Champs de formulaire</h2>
+        <p style="font-size:16px; color:#64748B; margin:0 0 28px; max-width:620px; line-height:1.6;">Champs, sélecteurs et contrôles avec libellés explicites, aide contextuelle et états de validation. Base des inscriptions et de la saisie administrative.</p>
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; padding:32px; display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+          <div>
+            <label style="display:block; font:600 13px 'IBM Plex Sans'; color:#334155; margin-bottom:7px;">Nom de l'élève</label>
+            <input value="Amina Benali" style="width:100%; padding:11px 14px; border-radius:10px; border:1.5px solid #CBD5E1; font:400 15px 'IBM Plex Sans'; color:#0F172A; outline:none; transition:all .15s;" style-focus="border-color:#0179FF; box-shadow:0 0 0 4px rgba(1,121,255,.15);">
+          </div>
+          <div>
+            <label style="display:block; font:600 13px 'IBM Plex Sans'; color:#334155; margin-bottom:7px;">Classe</label>
+            <select style="width:100%; padding:11px 14px; border-radius:10px; border:1.5px solid #CBD5E1; font:400 15px 'IBM Plex Sans'; color:#0F172A; outline:none; background:#fff; appearance:none;">
+              <option>6e A — Collège</option>
+              <option>5e B — Collège</option>
+              <option>Terminale S</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font:600 13px 'IBM Plex Sans'; color:#334155; margin-bottom:7px;">Adresse e-mail du tuteur</label>
+            <input value="tuteur@exemple" style="width:100%; padding:11px 14px; border-radius:10px; border:1.5px solid #E11D2E; font:400 15px 'IBM Plex Sans'; color:#0F172A; outline:none; box-shadow:0 0 0 4px rgba(225,29,46,.12);">
+            <div style="font:500 12px 'IBM Plex Sans'; color:#C4162A; margin-top:6px;">Format d'e-mail invalide.</div>
+          </div>
+          <div>
+            <label style="display:block; font:600 13px 'IBM Plex Sans'; color:#334155; margin-bottom:7px;">Recherche</label>
+            <div style="position:relative;">
+              <svg style="position:absolute; left:13px; top:50%; transform:translateY(-50%); color:#94A3B8;" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+              <input placeholder="Rechercher un dossier…" style="width:100%; padding:11px 14px 11px 40px; border-radius:10px; border:1.5px solid #CBD5E1; font:400 15px 'IBM Plex Sans'; color:#0F172A; outline:none;">
+            </div>
+          </div>
+          <div style="grid-column:1 / -1;">
+            <label style="display:block; font:600 13px 'IBM Plex Sans'; color:#334155; margin-bottom:7px;">Remarque</label>
+            <textarea rows="3" style="width:100%; padding:11px 14px; border-radius:10px; border:1.5px solid #CBD5E1; font:400 15px 'IBM Plex Sans'; color:#0F172A; outline:none; resize:vertical;">Élève assidu, participe activement en classe.</textarea>
+          </div>
+          <div style="grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:28px; align-items:center; border-top:1px solid #F1F5F9; padding-top:24px;">
+            <label style="display:inline-flex; align-items:center; gap:9px; cursor:pointer; font:500 14px 'IBM Plex Sans'; color:#334155;">
+              <span style="width:20px; height:20px; border-radius:6px; background:#0179FF; display:inline-flex; align-items:center; justify-content:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+              Notifier le tuteur
+            </label>
+            <label style="display:inline-flex; align-items:center; gap:9px; cursor:pointer; font:500 14px 'IBM Plex Sans'; color:#334155;">
+              <span style="width:20px; height:20px; border-radius:6px; border:1.5px solid #CBD5E1; display:inline-block;"></span>
+              Archiver le dossier
+            </label>
+            <label style="display:inline-flex; align-items:center; gap:9px; cursor:pointer; font:500 14px 'IBM Plex Sans'; color:#334155;">
+              <span style="width:20px; height:20px; border-radius:999px; border:1.5px solid #0179FF; display:inline-flex; align-items:center; justify-content:center;"><span style="width:10px;height:10px;border-radius:999px;background:#0179FF;"></span></span>
+              Externe
+            </label>
+            <label style="display:inline-flex; align-items:center; gap:10px; cursor:pointer; font:500 14px 'IBM Plex Sans'; color:#334155;">
+              <span style="width:40px; height:23px; border-radius:999px; background:#0179FF; position:relative; display:inline-block;"><span style="position:absolute; top:2.5px; right:2.5px; width:18px; height:18px; border-radius:999px; background:#fff; box-shadow:0 1px 2px rgba(0,0,0,.3);"></span></span>
+              Accès portail activé
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CARDS ============ -->
+      <section id="cards" style="padding-top:72px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0179FF; margin-bottom:8px;">Composants</div>
+        <h2 style="font-size:30px; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em;">Cards</h2>
+        <p style="font-size:16px; color:#64748B; margin:0 0 28px; max-width:620px; line-height:1.6;">Conteneurs polyvalents : indicateurs, fonctionnalités, profils. Élévation au survol pour les cards cliquables.</p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:20px;">
+
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; padding:22px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+              <span style="width:44px; height:44px; border-radius:12px; background:#EAF3FF; color:#0179FF; display:flex; align-items:center; justify-content:center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+              <span style="display:inline-flex; align-items:center; gap:4px; color:#0B7A47; font:600 13px 'IBM Plex Sans';"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>+4,2 %</span>
+            </div>
+            <div style="font:700 32px 'IBM Plex Sans'; letter-spacing:-0.02em;">1 248</div>
+            <div style="font:400 14px 'IBM Plex Sans'; color:#64748B; margin-top:2px;">Élèves inscrits</div>
+          </div>
+
+          <div style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; padding:22px; transition:all .2s; cursor:pointer;" style-hover="box-shadow:0 14px 32px rgba(15,23,42,.12); transform:translateY(-3px); border-color:#D4E7FF;">
+            <span style="width:44px; height:44px; border-radius:12px; background:#0179FF; color:#fff; display:flex; align-items:center; justify-content:center; margin-bottom:16px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
+            <div style="font:700 18px 'IBM Plex Sans'; margin-bottom:6px;">Gestion des notes</div>
+            <div style="font:400 14px 'IBM Plex Sans'; color:#64748B; line-height:1.55;">Saisie des évaluations, calcul des moyennes et génération des bulletins en un clic.</div>
+          </div>
+
+          <div style="background:linear-gradient(135deg,#0179FF,#004CA8); border-radius:16px; padding:22px; color:#fff; box-shadow:0 14px 32px rgba(1,121,255,.3);">
+            <div style="font:600 13px 'IBM Plex Sans'; opacity:.85; margin-bottom:10px;">Formule Établissement</div>
+            <div style="display:flex; align-items:baseline; gap:6px;"><span style="font:700 34px 'IBM Plex Sans';">4,90 €</span><span style="opacity:.8; font-size:14px;">/ élève / an</span></div>
+            <div style="font:400 14px 'IBM Plex Sans'; opacity:.85; margin:12px 0 18px; line-height:1.5;">Modules illimités, support prioritaire, multi-établissements.</div>
+            <button style="width:100%; border:none; cursor:pointer; padding:11px; border-radius:10px; background:#fff; color:#0179FF; font:600 15px 'IBM Plex Sans';">Choisir cette formule</button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============ ALERTES & TOAST ============ -->
+      <section id="alertes" style="padding-top:72px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0179FF; margin-bottom:8px;">Composants</div>
+        <h2 style="font-size:30px; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em;">Alertes, toast &amp; modale</h2>
+        <p style="font-size:16px; color:#64748B; margin:0 0 28px; max-width:620px; line-height:1.6;">Retours système clairs et non intrusifs. Les alertes s'intègrent au flux ; le toast et la modale sont interactifs — essayez-les.</p>
+
+        <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:24px;">
+          <div style="display:flex; gap:12px; padding:14px 16px; border-radius:12px; background:#E7F7EF; border:1px solid #B6E7CE;">
+            <svg style="flex:none; color:#129E5E;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+            <div><div style="font:600 14px 'IBM Plex Sans'; color:#0B7A47;">Bulletins générés</div><div style="font:400 13px 'IBM Plex Sans'; color:#2C7A56;">Les 32 bulletins de la classe 3e A sont prêts à être envoyés.</div></div>
+          </div>
+          <div style="display:flex; gap:12px; padding:14px 16px; border-radius:12px; background:#FEF4E2; border:1px solid #F5D89A;">
+            <svg style="flex:none; color:#E08A00;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+            <div><div style="font:600 14px 'IBM Plex Sans'; color:#9A5B00;">Paiements en attente</div><div style="font:400 13px 'IBM Plex Sans'; color:#8A5A12;">14 échéances arrivent à terme cette semaine.</div></div>
+          </div>
+          <div style="display:flex; gap:12px; padding:14px 16px; border-radius:12px; background:#FDECEE; border:1px solid #F6C0C7;">
+            <svg style="flex:none; color:#E11D2E;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+            <div><div style="font:600 14px 'IBM Plex Sans'; color:#B01524;">Import interrompu</div><div style="font:400 13px 'IBM Plex Sans'; color:#A0212D;">Le fichier CSV contient des colonnes non reconnues.</div></div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <button onClick="{{ showToast }}" style="border:none; cursor:pointer; padding:11px 20px; border-radius:10px; background:#0179FF; color:#fff; font:600 15px 'IBM Plex Sans';">Afficher un toast</button>
+          <button onClick="{{ openModal }}" style="cursor:pointer; padding:11px 20px; border-radius:10px; background:#fff; color:#0179FF; border:1.5px solid #A9CFFF; font:600 15px 'IBM Plex Sans';">Ouvrir une modale</button>
+        </div>
+      </section>
+
+      <!-- ============ TABS & ACCORDEON ============ -->
+      <section id="tabs" style="padding-top:72px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0179FF; margin-bottom:8px;">Composants</div>
+        <h2 style="font-size:30px; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em;">Tabs &amp; accordéon</h2>
+        <p style="font-size:16px; color:#64748B; margin:0 0 28px; max-width:620px; line-height:1.6;">Deux façons d'organiser le contenu dense. Les onglets pour basculer entre vues, l'accordéon pour les FAQ et contenus repliables.</p>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; overflow:hidden; margin-bottom:24px;">
+          <div style="display:flex; gap:2px; padding:6px; background:#F8FAFC; border-bottom:1px solid #E2E8F0;">
+            <button onClick="{{ setTabEleves }}" style="flex:1; cursor:pointer; padding:11px; border:none; border-radius:10px; font:600 14px 'IBM Plex Sans'; background: {{ tabEleveBg }}; color: {{ tabEleveColor }};">Élèves</button>
+            <button onClick="{{ setTabProfs }}" style="flex:1; cursor:pointer; padding:11px; border:none; border-radius:10px; font:600 14px 'IBM Plex Sans'; background: {{ tabProfBg }}; color: {{ tabProfColor }};">Enseignants</button>
+            <button onClick="{{ setTabFinances }}" style="flex:1; cursor:pointer; padding:11px; border:none; border-radius:10px; font:600 14px 'IBM Plex Sans'; background: {{ tabFinBg }}; color: {{ tabFinColor }};">Finances</button>
+          </div>
+          <div style="padding:28px;">
+            <div style="font:700 22px 'IBM Plex Sans'; margin-bottom:8px;">{{ tabContent.title }}</div>
+            <div style="font:400 15px 'IBM Plex Sans'; color:#64748B; line-height:1.6; max-width:520px;">{{ tabContent.body }}</div>
+          </div>
+        </div>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; overflow:hidden;">
+          <sc-for list="{{ accItems }}" as="item" hint-placeholder-count="3">
+            <div style="border-bottom:1px solid #F1F5F9;">
+              <button onClick="{{ item.onToggle }}" style="width:100%; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 24px; border:none; background:none; text-align:left; font:600 16px 'IBM Plex Sans'; color:#0F172A;">
+                <span>{{ item.q }}</span>
+                <span style="flex:none; width:26px; height:26px; border-radius:8px; background:#EAF3FF; color:#0179FF; display:flex; align-items:center; justify-content:center;">{{ item.sign }}</span>
+              </button>
+              <sc-if value="{{ item.open }}" hint-placeholder-val="{{ true }}">
+                <div style="padding:0 24px 20px; font:400 15px 'IBM Plex Sans'; color:#64748B; line-height:1.6; max-width:640px;">{{ item.a }}</div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- ============ TABLE & PROGRESS ============ -->
+      <section id="table" style="padding-top:72px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0179FF; margin-bottom:8px;">Composants</div>
+        <h2 style="font-size:30px; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em;">Tables &amp; barres de progression</h2>
+        <p style="font-size:16px; color:#64748B; margin:0 0 28px; max-width:620px; line-height:1.6;">Tableaux lisibles pour les listes administratives, en-têtes clairs et lignes survolables. Barres de progression pour l'avancement et les quotas.</p>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; overflow:hidden; margin-bottom:28px;">
+          <table style="width:100%; border-collapse:collapse; font:400 14px 'IBM Plex Sans';">
+            <thead>
+              <tr style="background:#F8FAFC;">
+                <th style="text-align:left; padding:14px 24px; font:600 12px 'IBM Plex Sans'; letter-spacing:.05em; text-transform:uppercase; color:#64748B; border-bottom:1px solid #E2E8F0;">Élève</th>
+                <th style="text-align:left; padding:14px 24px; font:600 12px 'IBM Plex Sans'; letter-spacing:.05em; text-transform:uppercase; color:#64748B; border-bottom:1px solid #E2E8F0;">Classe</th>
+                <th style="text-align:left; padding:14px 24px; font:600 12px 'IBM Plex Sans'; letter-spacing:.05em; text-transform:uppercase; color:#64748B; border-bottom:1px solid #E2E8F0;">Moyenne</th>
+                <th style="text-align:left; padding:14px 24px; font:600 12px 'IBM Plex Sans'; letter-spacing:.05em; text-transform:uppercase; color:#64748B; border-bottom:1px solid #E2E8F0;">Statut</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="transition:background .12s;" style-hover="background:#F8FAFC;">
+                <td style="padding:16px 24px; border-bottom:1px solid #F1F5F9; font-weight:600;">Amina Benali</td>
+                <td style="padding:16px 24px; border-bottom:1px solid #F1F5F9; color:#475569;">3e A</td>
+                <td style="padding:16px 24px; border-bottom:1px solid #F1F5F9; font-family:'IBM Plex Mono';">16,4</td>
+                <td style="padding:16px 24px; border-bottom:1px solid #F1F5F9;"><span style="padding:4px 10px; border-radius:999px; background:#E7F7EF; color:#0B7A47; font:600 12px 'IBM Plex Sans';">À jour</span></td>
+              </tr>
+              <tr style="transition:background .12s;" style-hover="background:#F8FAFC;">
+                <td style="padding:16px 24px; border-bottom:1px solid #F1F5F9; font-weight:600;">Youssef Karimi</td>
+                <td style="padding:16px 24px; border-bottom:1px solid #F1F5F9; color:#475569;">3e A</td>
+                <td style="padding:16px 24px; border-bottom:1px solid #F1F5F9; font-family:'IBM Plex Mono';">13,1</td>
+                <td style="padding:16px 24px; border-bottom:1px solid #F1F5F9;"><span style="padding:4px 10px; border-radius:999px; background:#FEF4E2; color:#9A5B00; font:600 12px 'IBM Plex Sans';">En attente</span></td>
+              </tr>
+              <tr style="transition:background .12s;" style-hover="background:#F8FAFC;">
+                <td style="padding:16px 24px; font-weight:600;">Lina Haddad</td>
+                <td style="padding:16px 24px; color:#475569;">3e B</td>
+                <td style="padding:16px 24px; font-family:'IBM Plex Mono';">17,8</td>
+                <td style="padding:16px 24px;"><span style="padding:4px 10px; border-radius:999px; background:#E7F7EF; color:#0B7A47; font:600 12px 'IBM Plex Sans';">À jour</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="background:#fff; border:1px solid #E2E8F0; border-radius:16px; padding:28px; display:flex; flex-direction:column; gap:20px;">
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px; font:500 14px 'IBM Plex Sans';"><span>Bulletins saisis</span><span style="color:#64748B; font-family:'IBM Plex Mono';">78 %</span></div>
+            <div style="height:9px; border-radius:999px; background:#F1F5F9; overflow:hidden;"><div style="height:100%; width:78%; border-radius:999px; background:linear-gradient(90deg,#3F93FF,#0179FF);"></div></div>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px; font:500 14px 'IBM Plex Sans';"><span>Frais recouvrés</span><span style="color:#64748B; font-family:'IBM Plex Mono';">92 %</span></div>
+            <div style="height:9px; border-radius:999px; background:#F1F5F9; overflow:hidden;"><div style="height:100%; width:92%; border-radius:999px; background:#129E5E;"></div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:24px; flex-wrap:wrap; border-top:1px solid #F1F5F9; padding-top:20px;">
+            <div style="height:8px; flex:1; min-width:160px; border-radius:999px; background:#F1F5F9; overflow:hidden;"><div style="height:100%; width:45%; background:#0179FF; border-radius:999px;"></div></div>
+            <div style="display:flex; gap:8px; align-items:center; font:500 13px 'IBM Plex Sans'; color:#64748B;">
+              <span style="width:40px; height:40px; border-radius:999px; border:3px solid #E2E8F0; border-top-color:#0179FF; display:inline-block; animation:mdspin 0.9s linear infinite;"></span>
+              Chargement…
+            </div>
+            <div style="flex:1; min-width:180px; display:flex; flex-direction:column; gap:8px;">
+              <div style="height:12px; border-radius:6px; background:linear-gradient(90deg,#F1F5F9,#E2E8F0,#F1F5F9); background-size:200% 100%; animation:mdshimmer 1.4s infinite;"></div>
+              <div style="height:12px; width:70%; border-radius:6px; background:linear-gradient(90deg,#F1F5F9,#E2E8F0,#F1F5F9); background-size:200% 100%; animation:mdshimmer 1.4s infinite;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ NAVIGATION ============ -->
+      <section id="navigation" style="padding-top:72px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0179FF; margin-bottom:8px;">Composants</div>
+        <h2 style="font-size:30px; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em;">Navigation</h2>
+        <p style="font-size:16px; color:#64748B; margin:0 0 28px; max-width:620px; line-height:1.6;">Barre de navigation publique, fil d'Ariane et pagination. Cohérents sur desktop, tablette et mobile.</p>
+
+        <div style="border:1px solid #E2E8F0; border-radius:16px; overflow:hidden; margin-bottom:24px; box-shadow:0 6px 16px rgba(15,23,42,.06);">
+          <nav style="display:flex; align-items:center; justify-content:space-between; padding:14px 24px; background:#fff;">
+            <div style="display:flex; align-items:center; gap:32px;">
+              <img src="uploads/medaaris-logo.jpeg" alt="MEDAARIS" style="height:34px; border-radius:7px;">
+              <div style="display:flex; gap:6px;">
+                <a href="#navigation" style="padding:8px 12px; border-radius:8px; font:600 14px 'IBM Plex Sans'; color:#0179FF; background:#EAF3FF;">Accueil</a>
+                <a href="#navigation" style="padding:8px 12px; border-radius:8px; font:500 14px 'IBM Plex Sans'; color:#334155;" style-hover="background:#F1F5F9;">Fonctionnalités</a>
+                <a href="#navigation" style="padding:8px 12px; border-radius:8px; font:500 14px 'IBM Plex Sans'; color:#334155;" style-hover="background:#F1F5F9;">Tarifs</a>
+                <a href="#navigation" style="padding:8px 12px; border-radius:8px; font:500 14px 'IBM Plex Sans'; color:#334155;" style-hover="background:#F1F5F9;">Blog</a>
+                <a href="#navigation" style="padding:8px 12px; border-radius:8px; font:500 14px 'IBM Plex Sans'; color:#334155;" style-hover="background:#F1F5F9;">Contact</a>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="display:inline-flex; gap:4px; align-items:center; padding:5px 10px; border-radius:8px; background:#F1F5F9; font:600 12px 'IBM Plex Sans'; color:#475569;">FR</span>
+              <a href="#navigation" style="padding:9px 14px; font:600 14px 'IBM Plex Sans'; color:#334155;">Connexion</a>
+              <button style="border:none; cursor:pointer; padding:9px 18px; border-radius:10px; background:#0179FF; color:#fff; font:600 14px 'IBM Plex Sans';">Demander une démo</button>
+            </div>
+          </nav>
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:24px; align-items:center; margin-bottom:8px;">
+          <nav style="display:flex; align-items:center; gap:8px; font:500 14px 'IBM Plex Sans'; color:#64748B;">
+            <a href="#navigation">Accueil</a>
+            <span style="color:#CBD5E1;">/</span>
+            <a href="#navigation">Blog</a>
+            <span style="color:#CBD5E1;">/</span>
+            <span style="color:#0F172A; font-weight:600;">Réussir la rentrée</span>
+          </nav>
+        </div>
+
+        <div style="display:flex; gap:6px; align-items:center;">
+          <button style="width:38px; height:38px; border-radius:9px; border:1px solid #E2E8F0; background:#fff; cursor:pointer; color:#94A3B8; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button style="width:38px; height:38px; border-radius:9px; border:none; background:#0179FF; color:#fff; cursor:pointer; font:600 14px 'IBM Plex Sans';">1</button>
+          <button style="width:38px; height:38px; border-radius:9px; border:1px solid #E2E8F0; background:#fff; cursor:pointer; font:600 14px 'IBM Plex Sans'; color:#334155;">2</button>
+          <button style="width:38px; height:38px; border-radius:9px; border:1px solid #E2E8F0; background:#fff; cursor:pointer; font:600 14px 'IBM Plex Sans'; color:#334155;">3</button>
+          <span style="padding:0 6px; color:#94A3B8;">…</span>
+          <button style="width:38px; height:38px; border-radius:9px; border:1px solid #E2E8F0; background:#fff; cursor:pointer; font:600 14px 'IBM Plex Sans'; color:#334155;">12</button>
+          <button style="width:38px; height:38px; border-radius:9px; border:1px solid #E2E8F0; background:#fff; cursor:pointer; color:#334155; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </section>
+
+      <!-- ============ FOOTER ============ -->
+      <section id="footer" style="padding-top:72px;">
+        <div style="font-size:12px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#0179FF; margin-bottom:8px;">Composants</div>
+        <h2 style="font-size:30px; font-weight:700; margin:0 0 8px; letter-spacing:-0.02em;">Footer</h2>
+        <p style="font-size:16px; color:#64748B; margin:0 0 28px; max-width:620px; line-height:1.6;">Pied de page institutionnel : navigation secondaire, mentions légales et sélecteur de langue.</p>
+        <div style="border-radius:16px; overflow:hidden; background:#0F172A; color:#fff;">
+          <div style="padding:44px 40px; display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:32px;">
+            <div>
+              <img src="uploads/medaaris-logo.jpeg" alt="MEDAARIS" style="height:38px; border-radius:8px; margin-bottom:16px;">
+              <p style="font:400 14px 'IBM Plex Sans'; color:#94A3B8; line-height:1.6; max-width:260px;">La plateforme qui simplifie la gestion des établissements scolaires — de l'inscription au bulletin.</p>
+            </div>
+            <div>
+              <div style="font:600 13px 'IBM Plex Sans'; margin-bottom:14px; color:#CBD5E1;">Produit</div>
+              <div style="display:flex; flex-direction:column; gap:10px; font:400 14px 'IBM Plex Sans';">
+                <a href="#footer" style="color:#94A3B8;" style-hover="color:#fff;">Fonctionnalités</a>
+                <a href="#footer" style="color:#94A3B8;" style-hover="color:#fff;">Tarifs</a>
+                <a href="#footer" style="color:#94A3B8;" style-hover="color:#fff;">Démonstration</a>
+              </div>
+            </div>
+            <div>
+              <div style="font:600 13px 'IBM Plex Sans'; margin-bottom:14px; color:#CBD5E1;">Ressources</div>
+              <div style="display:flex; flex-direction:column; gap:10px; font:400 14px 'IBM Plex Sans';">
+                <a href="#footer" style="color:#94A3B8;" style-hover="color:#fff;">Blog</a>
+                <a href="#footer" style="color:#94A3B8;" style-hover="color:#fff;">FAQ</a>
+                <a href="#footer" style="color:#94A3B8;" style-hover="color:#fff;">Contact</a>
+              </div>
+            </div>
+            <div>
+              <div style="font:600 13px 'IBM Plex Sans'; margin-bottom:14px; color:#CBD5E1;">Légal</div>
+              <div style="display:flex; flex-direction:column; gap:10px; font:400 14px 'IBM Plex Sans';">
+                <a href="#footer" style="color:#94A3B8;" style-hover="color:#fff;">Mentions légales</a>
+                <a href="#footer" style="color:#94A3B8;" style-hover="color:#fff;">Confidentialité</a>
+                <a href="#footer" style="color:#94A3B8;" style-hover="color:#fff;">CGU</a>
+              </div>
+            </div>
+          </div>
+          <div style="padding:20px 40px; border-top:1px solid #1E293B; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <span style="font:400 13px 'IBM Plex Sans'; color:#64748B;">© 2026 MEDAARIS. Tous droits réservés.</span>
+            <div style="display:flex; gap:6px;">
+              <span style="padding:5px 11px; border-radius:8px; background:#1E293B; font:600 12px 'IBM Plex Sans'; color:#fff;">FR</span>
+              <span style="padding:5px 11px; border-radius:8px; font:600 12px 'IBM Plex Sans'; color:#94A3B8;">EN</span>
+              <span style="padding:5px 11px; border-radius:8px; font:600 12px 'IBM Plex Sans'; color:#94A3B8;">ع</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- TOAST -->
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; bottom:28px; right:28px; z-index:60; display:flex; align-items:center; gap:12px; padding:15px 18px; border-radius:12px; background:#0F172A; color:#fff; box-shadow:0 20px 48px rgba(15,23,42,.3); max-width:360px; animation:mdrise .25s ease;">
+      <span style="flex:none; width:28px; height:28px; border-radius:8px; background:#129E5E; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+      <div style="flex:1;"><div style="font:600 14px 'IBM Plex Sans';">Modifications enregistrées</div><div style="font:400 13px 'IBM Plex Sans'; color:#94A3B8;">Le dossier a été mis à jour.</div></div>
+      <button onClick="{{ hideToast }}" style="border:none; background:none; cursor:pointer; color:#64748B; padding:2px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    </div>
+  </sc-if>
+
+  <!-- MODALE -->
+  <sc-if value="{{ modal }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="position:fixed; inset:0; z-index:70; background:rgba(15,23,42,.5); backdrop-filter:blur(3px); display:flex; align-items:center; justify-content:center; padding:24px; animation:mdfade .2s ease;">
+      <div style="background:#fff; border-radius:18px; max-width:440px; width:100%; padding:32px; box-shadow:0 30px 60px rgba(0,0,0,.3); animation:mdrise .25s ease;">
+        <div style="width:52px; height:52px; border-radius:14px; background:#FDECEE; color:#E11D2E; display:flex; align-items:center; justify-content:center; margin-bottom:18px;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
+        <div style="font:700 21px 'IBM Plex Sans'; margin-bottom:8px;">Supprimer ce dossier ?</div>
+        <div style="font:400 15px 'IBM Plex Sans'; color:#64748B; line-height:1.6; margin-bottom:26px;">Cette action est irréversible. Toutes les données liées à l'élève seront définitivement supprimées.</div>
+        <div style="display:flex; gap:12px; justify-content:flex-end;">
+          <button onClick="{{ closeModal }}" style="cursor:pointer; padding:11px 20px; border-radius:10px; background:#F1F5F9; color:#334155; border:none; font:600 15px 'IBM Plex Sans';">Annuler</button>
+          <button onClick="{{ closeModal }}" style="cursor:pointer; padding:11px 20px; border-radius:10px; background:#E11D2E; color:#fff; border:none; font:600 15px 'IBM Plex Sans';">Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;1280px&quot;,&quot;height&quot;:&quot;900px&quot;}}">
+class Component extends DCLogic {
+  state = { tab: 'eleves', acc: 1, toast: false, modal: false };
+
+  renderVals() {
+    const blue = [
+      { name: '50', hex: '#EAF3FF' }, { name: '100', hex: '#D4E7FF' }, { name: '200', hex: '#A9CFFF' },
+      { name: '300', hex: '#7DB4FF' }, { name: '400', hex: '#3F93FF' }, { name: '500', hex: '#0179FF' },
+      { name: '600', hex: '#0062D6' }, { name: '700', hex: '#004CA8' }, { name: '800', hex: '#00397E' },
+      { name: '900', hex: '#072A57' },
+    ];
+    const slate = [
+      { name: '50', hex: '#F8FAFC' }, { name: '100', hex: '#F1F5F9' }, { name: '200', hex: '#E2E8F0' },
+      { name: '300', hex: '#CBD5E1' }, { name: '400', hex: '#94A3B8' }, { name: '500', hex: '#64748B' },
+      { name: '600', hex: '#475569' }, { name: '700', hex: '#334155' }, { name: '800', hex: '#1E293B' },
+      { name: '900', hex: '#0F172A' }, { name: 'Ink', hex: '#080D18' },
+    ];
+    const states = [
+      { label: 'Succès', hex: '#129E5E', bg: '#E7F7EF' },
+      { label: 'Avertissement', hex: '#E08A00', bg: '#FEF4E2' },
+      { label: 'Erreur', hex: '#E11D2E', bg: '#FDECEE' },
+      { label: 'Information', hex: '#0179FF', bg: '#EAF3FF' },
+    ];
+    const gradients = [
+      { label: 'Marque', css: 'linear-gradient(135deg,#0179FF,#004CA8)', code: '135°, 500→700' },
+      { label: 'Vif', css: 'linear-gradient(135deg,#3F93FF,#0179FF)', code: '135°, 400→500' },
+      { label: 'Voile clair', css: 'linear-gradient(160deg,#F8FAFC,#EAF3FF)', code: '160°, 50→bleu 50' },
+    ];
+    const typeScale = [
+      { name: 'Display', spec: '44 / 700', px: '44px', weight: 700 },
+      { name: 'Titre 1', spec: '36 / 700', px: '36px', weight: 700 },
+      { name: 'Titre 2', spec: '30 / 700', px: '30px', weight: 700 },
+      { name: 'Titre 3', spec: '22 / 600', px: '22px', weight: 600 },
+      { name: 'Titre 4', spec: '18 / 600', px: '18px', weight: 600 },
+      { name: 'Corps L', spec: '17 / 400', px: '17px', weight: 400 },
+      { name: 'Corps', spec: '15 / 400', px: '15px', weight: 400 },
+      { name: 'Légende', spec: '13 / 500', px: '13px', weight: 500 },
+    ];
+    const spacing = [
+      { name: 'space-1', px: '4px' }, { name: 'space-2', px: '8px' }, { name: 'space-3', px: '12px' },
+      { name: 'space-4', px: '16px' }, { name: 'space-5', px: '20px' }, { name: 'space-6', px: '24px' },
+      { name: 'space-8', px: '32px' }, { name: 'space-10', px: '40px' }, { name: 'space-12', px: '48px' },
+      { name: 'space-16', px: '64px' },
+    ];
+    const radii = [
+      { name: 'sm', px: '6px' }, { name: 'md', px: '10px' }, { name: 'lg', px: '14px' },
+      { name: 'xl', px: '20px' }, { name: '2xl', px: '28px' }, { name: 'full', px: '999px' },
+    ];
+    const shadows = [
+      { name: 'xs', css: '0 1px 2px rgba(15,23,42,.06)' },
+      { name: 'sm', css: '0 1px 3px rgba(15,23,42,.08),0 1px 2px rgba(15,23,42,.04)' },
+      { name: 'md', css: '0 6px 16px rgba(15,23,42,.08)' },
+      { name: 'lg', css: '0 14px 32px rgba(15,23,42,.12)' },
+      { name: 'xl', css: '0 26px 52px rgba(15,23,42,.16)' },
+    ];
+
+    // interactive component demos
+    const tabs = {
+      eleves: { title: 'Élèves', body: '1 248 élèves inscrits sur l\u2019année en cours. Suivi des dossiers, présences et bulletins depuis une seule vue.' },
+      profs: { title: 'Enseignants', body: '86 enseignants actifs. Emplois du temps, affectations aux classes et communication centralisée.' },
+      finances: { title: 'Finances', body: 'Facturation des frais de scolarité, échéanciers et rapprochements — un tableau de bord clair pour l\u2019administration.' },
+    };
+    const accItems = [
+      { i: 1, q: 'Comment inscrire un nouvel élève ?', a: 'Depuis le module Élèves, créez un dossier, renseignez l\u2019état civil et rattachez la classe. Le tuteur reçoit un accès automatiquement.' },
+      { i: 2, q: 'Les bulletins sont-ils personnalisables ?', a: 'Oui. Les modèles de bulletins s\u2019adaptent aux barèmes de votre établissement, en français, anglais ou arabe.' },
+      { i: 3, q: 'MEDAARIS gère-t-il plusieurs établissements ?', a: 'La console multi-établissements permet de piloter un réseau d\u2019écoles avec des droits d\u2019accès distincts.' },
+    ].map(it => ({
+      ...it,
+      open: this.state.acc === it.i,
+      sign: this.state.acc === it.i ? '\u2212' : '+',
+      onToggle: () => this.setState(s => ({ acc: s.acc === it.i ? 0 : it.i })),
+    }));
+
+    const on = { background: '#0179FF', color: '#fff' };
+    const off = { background: 'transparent', color: '#475569' };
+    const t = this.state.tab;
+
+    return {
+      blue, slate, states, gradients, typeScale, spacing, radii, shadows,
+      accItems,
+      tab: this.state.tab,
+      tabContent: tabs[this.state.tab] || tabs.eleves,
+      setTabEleves: () => this.setState({ tab: 'eleves' }),
+      setTabProfs: () => this.setState({ tab: 'profs' }),
+      setTabFinances: () => this.setState({ tab: 'finances' }),
+      tabEleveBg: t === 'eleves' ? on.background : off.background,
+      tabEleveColor: t === 'eleves' ? on.color : off.color,
+      tabProfBg: t === 'profs' ? on.background : off.background,
+      tabProfColor: t === 'profs' ? on.color : off.color,
+      tabFinBg: t === 'finances' ? on.background : off.background,
+      tabFinColor: t === 'finances' ? on.color : off.color,
+      toast: this.state.toast,
+      showToast: () => { this.setState({ toast: true }); clearTimeout(this._t); this._t = setTimeout(() => this.setState({ toast: false }), 3200); },
+      hideToast: () => this.setState({ toast: false }),
+      modal: this.state.modal,
+      openModal: () => this.setState({ modal: true }),
+      closeModal: () => this.setState({ modal: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @keyframes navSlideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 920px) {
+    [data-nav-desk] { display: none !important; }
+    [data-nav-burger] { display: inline-flex !important; }
+  }
+</style>
+</helmet>
+<div style="position:sticky; top:0; z-index:60; padding:16px clamp(14px,4vw,36px) 0; font-family:'Hanken Grotesk',sans-serif;">
+  <header style="max-width:1180px; margin:0 auto; background:rgba(255,255,255,.72); backdrop-filter:blur(18px) saturate(1.4); -webkit-backdrop-filter:blur(18px) saturate(1.4); border:1px solid rgba(11,21,38,.07); border-radius:18px; box-shadow:0 8px 28px rgba(11,21,38,.07);">
+    <nav style="padding:11px 12px 11px 18px; display:flex; align-items:center; justify-content:space-between; gap:18px;">
+      <a href="Accueil.dc.html" style="display:flex; align-items:center; gap:10px;">
+        <img src="uploads/medaaris-logo.jpeg" alt="MEDAARIS" style="height:32px; border-radius:8px;">
+      </a>
+      <div data-nav-desk style="display:flex; align-items:center; gap:2px;">
+        <a href="Accueil.dc.html" style="position:relative; padding:9px 15px; border-radius:11px; font:500 15px 'Hanken Grotesk'; color: {{ cAccueil }}; background: {{ bgAccueil }}; transition:all .2s cubic-bezier(.2,.7,.2,1);" style-hover="color:#1B62F0; background:#EEF2FE;">Accueil</a>
+        <a href="Fonctionnalites.dc.html" style="position:relative; padding:9px 15px; border-radius:11px; font:500 15px 'Hanken Grotesk'; color: {{ cFonc }}; background: {{ bgFonc }}; transition:all .2s cubic-bezier(.2,.7,.2,1);" style-hover="color:#1B62F0; background:#EEF2FE;">Fonctionnalités</a>
+        <a href="Tarifs.dc.html" style="position:relative; padding:9px 15px; border-radius:11px; font:500 15px 'Hanken Grotesk'; color: {{ cTarifs }}; background: {{ bgTarifs }}; transition:all .2s cubic-bezier(.2,.7,.2,1);" style-hover="color:#1B62F0; background:#EEF2FE;">Tarifs</a>
+        <a href="Contact.dc.html" style="position:relative; padding:9px 15px; border-radius:11px; font:500 15px 'Hanken Grotesk'; color: {{ cContact }}; background: {{ bgContact }}; transition:all .2s cubic-bezier(.2,.7,.2,1);" style-hover="color:#1B62F0; background:#EEF2FE;">Contact</a>
+      </div>
+      <div data-nav-desk style="display:flex; align-items:center; gap:8px;">
+        <span style="display:inline-flex; align-items:center; gap:5px; padding:8px 11px; border-radius:11px; font:600 13px 'Hanken Grotesk'; color:#56617A; cursor:pointer; transition:all .2s;" style-hover="background:#EEF2FE; color:#1B62F0;">FR
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </span>
+        <a href="Connexion.dc.html" style="padding:9px 13px; border-radius:11px; font:600 15px 'Hanken Grotesk'; color:#0B1526; transition:all .2s;" style-hover="background:#EEF2FE; color:#1B62F0;">Connexion</a>
+        <a href="Contact.dc.html" style="position:relative; overflow:hidden; padding:11px 20px; border-radius:12px; background:linear-gradient(135deg,#1B62F0,#6D4BF6); color:#fff; font:600 15px 'Hanken Grotesk'; box-shadow:0 8px 20px rgba(27,98,240,.32); transition:all .22s cubic-bezier(.2,.7,.2,1);" style-hover="transform:translateY(-2px); box-shadow:0 12px 26px rgba(27,98,240,.44);">Demander une démo</a>
+      </div>
+      <button data-nav-burger onClick="{{ toggleMenu }}" style="display:none; align-items:center; justify-content:center; width:44px; height:44px; border-radius:12px; border:1px solid rgba(11,21,38,.1); background:#fff; cursor:pointer; color:#0B1526;">
+        <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></sc-if>
+        <sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg></sc-if>
+      </button>
+    </nav>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:6px 12px 14px; border-top:1px solid rgba(11,21,38,.06); animation:navSlideDown .2s ease;">
+        <div style="display:flex; flex-direction:column; gap:2px;">
+          <a href="Accueil.dc.html" style="padding:13px 14px; border-radius:12px; font:600 16px 'Hanken Grotesk'; color:#28324A;">Accueil</a>
+          <a href="Fonctionnalites.dc.html" style="padding:13px 14px; border-radius:12px; font:600 16px 'Hanken Grotesk'; color:#28324A;">Fonctionnalités</a>
+          <a href="Tarifs.dc.html" style="padding:13px 14px; border-radius:12px; font:600 16px 'Hanken Grotesk'; color:#28324A;">Tarifs</a>
+          <a href="Contact.dc.html" style="padding:13px 14px; border-radius:12px; font:600 16px 'Hanken Grotesk'; color:#28324A;">Contact</a>
+          <a href="Connexion.dc.html" style="padding:13px 14px; border-radius:12px; font:600 16px 'Hanken Grotesk'; color:#28324A;">Connexion</a>
+          <a href="Contact.dc.html" style="margin-top:8px; text-align:center; padding:14px; border-radius:13px; background:linear-gradient(135deg,#1B62F0,#6D4BF6); color:#fff; font:600 16px 'Hanken Grotesk';">Demander une démo</a>
+        </div>
+      </div>
+    </sc-if>
+  </header>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;active&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;accueil&quot;,&quot;fonctionnalites&quot;,&quot;tarifs&quot;,&quot;contact&quot;],&quot;default&quot;:&quot;accueil&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { menuOpen: false };
+  renderVals() {
+    const a = this.props.active || '';
+    const on = '#1B62F0', off = '#45506A', onBg = '#EAF0FE', offBg = 'transparent';
+    return {
+      menuOpen: this.state.menuOpen,
+      menuClosed: !this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      cAccueil: a === 'accueil' ? on : off, bgAccueil: a === 'accueil' ? onBg : offBg,
+      cFonc: a === 'fonctionnalites' ? on : off, bgFonc: a === 'fonctionnalites' ? onBg : offBg,
+      cTarifs: a === 'tarifs' ? on : off, bgTarifs: a === 'tarifs' ? onBg : offBg,
+      cContact: a === 'contact' ? on : off, bgContact: a === 'contact' ? onBg : offBg,
+    };
+  }
+}
+</script>
+</body>
+</html>

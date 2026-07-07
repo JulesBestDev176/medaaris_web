@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  medaaris-web:
+    image: ${MEDAARIS_WEB_IMAGE:-medaaris-web:latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://backend-prod.medaaris.com/api}
+    restart: unless-stopped
+    ports:
+      - '${MEDAARIS_WEB_PORT:-4300}:4300'
+    environment:
+      NODE_ENV: production
+      PORT: 4300
+      HOSTNAME: 0.0.0.0
