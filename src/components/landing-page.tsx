@@ -12,6 +12,7 @@ import {
   GraduationCap,
   LayoutDashboard,
   Lock,
+  Mail,
   Menu,
   MessageCircle,
   Monitor,
@@ -40,6 +41,7 @@ const navItems = [
   { href: '#apropos',    label: 'À propos' },
   { href: '#benefices',  label: 'Avantages' },
   { href: '#communaute', label: 'Communauté' },
+  { href: '#tarifs',     label: 'Tarifs' },
   { href: '#faq',        label: 'FAQ' },
   { href: '#contact',    label: 'Contact' },
 ];
@@ -48,87 +50,87 @@ const benefits = [
   {
     icon: LayoutDashboard,
     title: 'Une gestion simplifiée',
-    desc: "Réunissez les principales activités de votre établissement sur une seule plateforme.",
+    desc: "Centralisez les principales activités de votre établissement au sein d'une seule plateforme et gagnez en efficacité au quotidien.",
   },
   {
     icon: Users,
     title: 'Une meilleure organisation',
-    desc: "Accédez rapidement aux informations importantes et améliorez la coordination entre les différents acteurs.",
+    desc: "Accédez rapidement aux informations importantes et améliorez la coordination entre la direction, l'administration, les enseignants, les élèves et les parents.",
   },
   {
     icon: Clock,
-    title: 'Un gain de temps',
-    desc: "Automatisez les tâches administratives répétitives afin de consacrer plus de temps à l'éducation.",
+    title: 'Un gain de temps considérable',
+    desc: "Réduisez les tâches administratives répétitives afin que votre équipe puisse consacrer davantage de temps à l'accompagnement des élèves et au développement de votre établissement.",
   },
   {
     icon: TrendingUp,
-    title: 'Des décisions plus intelligentes',
-    desc: "Suivez l'évolution de votre établissement grâce à des tableaux de bord et des indicateurs en temps réel.",
+    title: 'Des décisions mieux éclairées',
+    desc: "Suivez l'évolution de votre établissement grâce à des tableaux de bord modernes et des indicateurs clairs qui facilitent la prise de décision.",
   },
   {
     icon: MessageCircle,
-    title: 'Une communication renforcée',
-    desc: "Favorisez les échanges entre la direction, les enseignants, les parents et les élèves.",
+    title: 'Une communication plus fluide',
+    desc: "Renforcez les échanges entre tous les acteurs de la communauté éducative grâce à une plateforme conçue pour favoriser la collaboration.",
   },
   {
     icon: ShieldCheck,
-    title: 'Une sécurité renforcée',
-    desc: "Vos données sont protégées par des technologies modernes garantissant confidentialité et disponibilité.",
+    title: 'Une sécurité à la hauteur de vos exigences',
+    desc: "Nous accordons une importance particulière à la confidentialité et à la protection de vos données afin de garantir un environnement numérique fiable et sécurisé.",
   },
 ];
 
 const audiences = [
   {
     title: 'Direction',
-    desc: 'Pilotez votre établissement avec une vision globale.',
+    desc: "Pilotez votre établissement avec une vision globale et prenez vos décisions en toute confiance grâce à une plateforme conçue pour vous accompagner au quotidien.",
     icon: Target,
   },
   {
     title: 'Administration',
-    desc: 'Optimisez les tâches administratives quotidiennes.',
+    desc: "Optimisez l'organisation administrative de votre établissement et simplifiez les opérations quotidiennes.",
     icon: Settings,
   },
   {
     title: 'Enseignants',
-    desc: "Accédez facilement aux outils nécessaires au suivi pédagogique.",
+    desc: "Disposez d'un environnement numérique moderne facilitant le suivi pédagogique et les échanges avec l'établissement.",
     icon: BookOpenCheck,
   },
   {
     title: 'Parents',
-    desc: "Restez informés de la vie scolaire de vos enfants.",
+    desc: "Restez informés de la vie scolaire de vos enfants et suivez leur parcours en toute simplicité.",
     icon: UsersRound,
   },
   {
     title: 'Élèves',
-    desc: "Consultez vos informations scolaires en toute simplicité.",
+    desc: "Accédez facilement à vos informations scolaires depuis un espace personnel sécurisé.",
     icon: GraduationCap,
   },
 ];
 
 const advantages = [
-  'Gain de temps',
-  'Productivité accrue',
-  'Meilleure organisation',
-  'Communication simplifiée',
-  'Plateforme moderne',
-  'Accessible partout',
-  'Interface intuitive',
-  'Données sécurisées',
+  'Gain de temps dans les tâches quotidiennes',
+  'Amélioration de la productivité des équipes',
+  'Organisation simplifiée',
+  'Communication renforcée',
+  'Interface moderne et intuitive',
+  'Accessible sur ordinateur, tablette et smartphone',
+  'Données protégées et sécurisées',
   'Sauvegardes automatiques',
-  'Disponible 24h/24',
+  'Disponibilité 24h/24 et 7j/7',
   'Accompagnement personnalisé',
-  'Évolutive selon vos besoins',
+  'Plateforme évolutive',
+  'Expérience utilisateur fluide et professionnelle',
 ];
 
 const whyChoose = [
   'Moderniser leur établissement',
   'Réduire les tâches administratives',
-  'Mieux collaborer',
+  'Améliorer la collaboration entre les équipes',
   'Centraliser leurs informations',
-  'Améliorer le suivi scolaire',
-  'Renforcer la communication',
-  'Optimiser la gestion quotidienne',
-  'Offrir un meilleur service aux parents',
+  'Faciliter le suivi scolaire',
+  'Renforcer la communication avec les familles',
+  'Optimiser leur organisation quotidienne',
+  'Offrir une meilleure expérience aux élèves et aux parents',
 ];
 
 const levels = [
@@ -154,36 +156,137 @@ const securityPoints = [
 
 const testimonials = [
   {
-    quote: "Depuis MEDAARIS, notre équipe administrative a divisé par deux le temps passé sur les inscriptions et les bulletins. Les familles apprécient enfin d'avoir une information claire.",
-    author: 'Sophia L.',
-    role: "Directrice - Groupe scolaire",
-    initials: 'SL',
+    quote: "MEDAARIS nous a permis de gagner un temps précieux dans notre organisation quotidienne.",
+    author: "Directeur d'établissement",
+    role: "Direction",
+    initials: 'DE',
   },
   {
-    quote: "La communication avec les parents a été transformée. Nous pouvons envoyer des informations en quelques secondes, et ils y accèdent depuis leur téléphone.",
-    author: 'Moussa D.',
-    role: "Directeur administratif - Lycée",
-    initials: 'MD',
+    quote: "Une plateforme simple, moderne et agréable à utiliser par toute notre équipe.",
+    author: 'Responsable administratif',
+    role: "Administration",
+    initials: 'RA',
   },
   {
-    quote: "La gestion des absences et des notes est devenue beaucoup plus fluide. Nos enseignants ont adhéré rapidement à la plateforme.",
-    author: 'Fatou K.',
-    role: "Proviseur - Établissement privé",
-    initials: 'FK',
+    quote: "Nos échanges avec les parents sont devenus beaucoup plus fluides depuis l'utilisation de MEDAARIS.",
+    author: 'Enseignant',
+    role: "Équipe pédagogique",
+    initials: 'EN',
   },
 ];
 
 const faqs: [string, string][] = [
-  ['MEDAARIS convient-elle aux petites écoles ?', "Oui, la plateforme accompagne aussi bien les petites structures que les grands établissements, quel que soit l'effectif."],
-  ["Faut-il installer un logiciel ?", "Non, MEDAARIS est entièrement accessible en ligne depuis n'importe quel navigateur, sans installation nécessaire."],
-  ['Peut-on utiliser MEDAARIS sur téléphone ?', "Oui, la plateforme est accessible depuis ordinateur, tablette et smartphone. Vos données restent synchronisées en temps réel."],
-  ['Les données sont-elles sécurisées ?', "Oui, la protection et la confidentialité des données sont une priorité absolue. Nous assurons un hébergement sécurisé avec sauvegardes régulières."],
-  ['Comment obtenir une démonstration ?', "Contactez notre équipe par téléphone, WhatsApp ou via le formulaire de contact. Nous organisons une démo personnalisée selon vos besoins."],
-  ['Quels niveaux scolaires sont compatibles ?', "MEDAARIS accompagne les établissements de jardin d'enfants, primaire, collège et lycée."],
-  ["Combien de temps faut-il pour démarrer ?", "La mise en place est rapide. Notre équipe vous accompagne du paramétrage jusqu'au lancement lors de la première rentrée."],
-  ['Les parents ont-ils accès à la plateforme ?', "Oui, les parents disposent d'un espace dédié pour consulter les notes, absences, bulletins et communications de l'établissement."],
-  ['Peut-on importer nos données existantes ?', "Oui, nous vous aidons à importer vos données existantes lors du paramétrage initial."],
-  ['Y a-t-il un accompagnement après le lancement ?', "Oui, notre équipe reste disponible pour vous accompagner et répondre à vos questions après le lancement."],
+  ['MEDAARIS convient-elle aux petites écoles ?', "Oui. Notre plateforme s'adapte aussi bien aux petits établissements qu'aux structures de grande taille."],
+  ["Faut-il installer un logiciel ?", "Non. MEDAARIS est accessible directement via votre navigateur Internet, sans installation complexe."],
+  ['Peut-on utiliser MEDAARIS sur téléphone ?', "Oui. La plateforme est compatible avec les smartphones, les tablettes et les ordinateurs."],
+  ['Les données sont-elles sécurisées ?', "Oui. Nous mettons en œuvre des mesures de sécurité adaptées afin de protéger les informations de votre établissement."],
+  ['MEDAARIS est-elle adaptée à tous les niveaux scolaires ?', "Oui. Elle accompagne les jardins d'enfants, les écoles primaires, les collèges et les lycées."],
+  ["Une formation est-elle proposée ?", "Oui. Notre équipe accompagne votre établissement lors de la prise en main de la plateforme."],
+  ['Le support technique est-il disponible ?', "Oui. Notre équipe reste disponible pour répondre à vos questions et vous accompagner."],
+  ["Puis-je demander une démonstration avant de m'abonner ?", "Oui. Nous proposons une démonstration gratuite afin de vous présenter MEDAARIS et répondre à toutes vos questions."],
+  ["Combien de temps faut-il pour commencer ?", "Après la création de votre espace, notre équipe vous accompagne pour une mise en service rapide."],
+  ['Comment contacter MEDAARIS ?', "Par téléphone, WhatsApp, e-mail ou via le formulaire de contact disponible sur notre site."],
+];
+
+const plans = [
+  {
+    id: 'starter',
+    name: 'Starter',
+    tagline: 'Idéal pour les petits établissements',
+    students: '300',
+    inscription: '7 000',
+    monthly: '4 000',
+    color: '#0E9F70',
+    bg: '#E9FBF4',
+    features: [
+      "Jusqu'à 300 élèves",
+      'Accès à la plateforme MEDAARIS',
+      'Mises à jour régulières',
+      'Hébergement sécurisé',
+      'Sauvegardes automatiques',
+      'Support technique',
+    ],
+    cta: 'Commencer',
+    featured: false,
+  },
+  {
+    id: 'standard',
+    name: 'Standard',
+    tagline: 'Pour les établissements en développement',
+    students: '600',
+    inscription: '11 200',
+    monthly: '5 200',
+    color: '#1B62F0',
+    bg: '#EEF3FF',
+    features: [
+      "Jusqu'à 600 élèves",
+      'Toutes les fonctionnalités essentielles',
+      'Mises à jour incluses',
+      'Hébergement sécurisé',
+      'Sauvegardes automatiques',
+      'Assistance technique',
+    ],
+    cta: 'Choisir cette offre',
+    featured: false,
+  },
+  {
+    id: 'premium',
+    name: 'Premium',
+    tagline: 'Pour les établissements en pleine croissance',
+    students: '1 000',
+    inscription: '22 000',
+    monthly: '9 200',
+    color: '#6D4BF6',
+    bg: '#F0ECFF',
+    features: [
+      "Jusqu'à 1 000 élèves",
+      'Plateforme complète',
+      'Mises à jour incluses',
+      'Hébergement sécurisé',
+      'Sauvegardes automatiques',
+      'Support prioritaire',
+    ],
+    cta: 'Choisir Premium',
+    featured: true,
+  },
+  {
+    id: 'enterprise',
+    name: 'Enterprise',
+    tagline: 'Pour les grands établissements',
+    students: '1 500',
+    inscription: '30 000',
+    monthly: '18 000',
+    color: '#D97706',
+    bg: '#FEF3C7',
+    features: [
+      "Jusqu'à 1 500 élèves",
+      'Solution évolutive',
+      'Accompagnement personnalisé',
+      'Hébergement sécurisé',
+      'Sauvegardes automatiques',
+      'Support prioritaire',
+    ],
+    cta: 'Contacter un conseiller',
+    featured: false,
+  },
+] as const;
+
+const allPlansInclude = [
+  'Accès à la plateforme MEDAARIS',
+  'Hébergement sécurisé',
+  'Sauvegardes automatiques',
+  'Mises à jour régulières',
+  'Assistance technique',
+  "Formation à la prise en main",
+  'Accompagnement lors du démarrage',
+];
+
+const customAudiences = [
+  "Réseaux d'établissements scolaires",
+  'Groupes scolaires',
+  'Organisations éducatives',
+  'Structures multi-sites',
+  'Besoins spécifiques ou personnalisés',
 ];
 
 /* ─── Main ──────────────────────────────────────────────────────────── */
@@ -232,10 +335,10 @@ export function LandingPage() {
   );
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#F4F7FE] pt-[74px] text-[#0B1526]">
+    <main className="min-h-screen overflow-x-hidden bg-[#F4F7FE] pt-[74px] text-[#0B1526]" style={{ zoom: 0.8 }}>
 
       {/* ── Navbar ── */}
-      <Navbar activeId={activeId} menuOpen={menuOpen} onToggle={() => setMenuOpen((v) => !v)} onClose={() => setMenuOpen(false)} />
+      <Navbar activeId={activeId} menuOpen={menuOpen} onToggle={() => setMenuOpen((v) => !v)} onClose={() => setMenuOpen(false)} onNav={(id) => setActiveId(id)} />
 
       {/* ── Hero ── */}
       <section id="accueil" className="min-h-[calc(100vh-74px)]">
@@ -257,10 +360,11 @@ export function LandingPage() {
               <span className="block whitespace-nowrap">une seule plateforme.</span>
             </h1>
 
-            <p className="animate-rise mb-7 max-w-[600px] text-[clamp(16px,1.55vw,18px)] leading-8 text-[#4D5B78]">
-              MEDAARIS est une plateforme de gestion scolaire intelligente qui simplifie
-              l'administration, améliore la communication et accompagne les
-              établissements dans leur transformation numérique.
+            <p className="animate-rise mb-3 max-w-[600px] text-[clamp(16px,1.55vw,18px)] font-medium leading-8 text-[#0B1526]">
+              Simplifiez la gestion de votre établissement avec MEDAARIS.
+            </p>
+            <p className="animate-rise mb-7 max-w-[600px] text-[clamp(15px,1.4vw,17px)] leading-8 text-[#4D5B78]">
+              MEDAARIS est une plateforme de gestion scolaire qui accompagne les établissements dans leur transformation numérique. Elle simplifie l'administration, améliore la communication et offre aux équipes éducatives un environnement moderne, sécurisé et accessible à tout moment.
             </p>
 
             <div className="animate-rise mb-6 flex flex-wrap gap-3">
@@ -329,22 +433,22 @@ export function LandingPage() {
             <div>
               <SectionEyebrow n="01" label="Qui sommes-nous ?" />
               <h2 className="mb-6 text-[clamp(26px,3.5vw,42px)] font-bold leading-[1.1] tracking-tight">
-                MEDAARIS
+                Une solution pensée pour les établissements d&apos;enseignement modernes.
               </h2>
               <p className="mb-5 text-[17px] leading-relaxed text-[#56617A]">
-                MEDAARIS est une solution complète de gestion scolaire développée pour
-                répondre aux besoins des établissements d'enseignement modernes.
+                MEDAARIS est une plateforme de gestion scolaire développée pour
+                répondre aux défis quotidiens des établissements d&apos;enseignement.
               </p>
               <p className="mb-5 text-[17px] leading-relaxed text-[#56617A]">
-                Notre plateforme centralise les opérations essentielles d'un
-                établissement afin de faciliter le travail des équipes administratives,
-                pédagogiques et financières, tout en offrant une meilleure expérience
-                aux élèves et aux parents.
+                Notre solution réunit au sein d&apos;une seule plateforme les principaux outils
+                nécessaires au bon fonctionnement d&apos;une école. Elle accompagne les équipes
+                administratives, pédagogiques et financières dans leurs missions quotidiennes
+                tout en améliorant l&apos;expérience des élèves et des parents.
               </p>
               <p className="text-[17px] leading-relaxed text-[#56617A]">
-                Notre objectif est d'aider les écoles à gagner du temps, améliorer
-                leur organisation et prendre de meilleures décisions grâce à une
-                plateforme moderne, sécurisée et accessible partout.
+                Notre ambition est simple&nbsp;: permettre aux établissements de gagner du temps,
+                d&apos;améliorer leur organisation et de prendre des décisions plus éclairées grâce
+                à une solution moderne, fiable et sécurisée.
               </p>
             </div>
 
@@ -354,14 +458,14 @@ export function LandingPage() {
                 color="#1B62F0"
                 bg="#EEF3FF"
               >
-                Accompagner les établissements scolaires dans leur transformation numérique avec une solution fiable, simple et performante.
+                Accompagner les établissements scolaires dans leur transformation numérique grâce à une plateforme performante, intuitive et fiable qui simplifie leur gestion quotidienne et contribue à offrir un environnement éducatif plus efficace.
               </MissionCard>
               <MissionCard
                 label="Notre vision"
                 color="#10B981"
                 bg="#ECFDF5"
               >
-                Construire l'avenir de la gestion scolaire en Afrique avec une plateforme moderne, évolutive et accessible.
+                Construire l&apos;avenir de la gestion scolaire en proposant une plateforme innovante, évolutive et accessible, capable d&apos;accompagner durablement les établissements dans leur développement.
               </MissionCard>
               <div className="col-span-2 border border-[#E6EBF5] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.04)]">
                 <div className="mb-4 flex items-center justify-between border-b border-[#E6EBF5] pb-3">
@@ -390,8 +494,8 @@ export function LandingPage() {
       <section id="fonctionnalites" className="mx-auto max-w-[1240px] px-2 py-12 sm:px-3 lg:min-h-screen lg:px-4 lg:py-16">
         <div className="mb-8 max-w-[980px]">
           <SectionEyebrow n="02" label="Pourquoi MEDAARIS ?" />
-          <h2 className="mb-4 text-[clamp(26px,3.2vw,40px)] font-bold leading-[1.1] tracking-tight lg:whitespace-nowrap">
-            Les benefices pour votre établissement
+          <h2 className="mb-4 text-[clamp(26px,3.2vw,40px)] font-bold leading-[1.1] tracking-tight">
+            Pourquoi choisir MEDAARIS&nbsp;?
           </h2>
           <p className="text-[17px] leading-relaxed text-[#56617A]">
             Moins de tâches manuelles, plus de visibilite et une communication plus fluide entre les équipes, les parents et les élèves.
@@ -449,9 +553,9 @@ export function LandingPage() {
 
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {audiences.map((a, index) => (
-              <article key={a.title} className="group border border-[#E6EBF5] bg-[#F7F9FE] p-5 transition hover:border-[#C9D9FF] hover:bg-white hover:shadow-[0_14px_30px_rgba(15,23,42,0.07)]">
-                <div className={index === 0 ? 'mb-5 h-1 w-12 bg-[#1B62F0]' : index === 1 ? 'mb-5 h-1 w-12 bg-[#6D4BF6]' : index === 2 ? 'mb-5 h-1 w-12 bg-[#22CCEE]' : 'mb-5 h-1 w-12 bg-[#0E9F70]'} />
-                <div className="mb-7 flex items-center justify-between">
+              <article key={a.title} className="group border border-[#E6EBF5] bg-[#F7F9FE] p-5 text-center transition hover:border-[#C9D9FF] hover:bg-white hover:shadow-[0_14px_30px_rgba(15,23,42,0.07)]">
+                <div className={index === 0 ? 'mx-auto mb-5 h-1 w-12 bg-[#1B62F0]' : index === 1 ? 'mx-auto mb-5 h-1 w-12 bg-[#6D4BF6]' : index === 2 ? 'mx-auto mb-5 h-1 w-12 bg-[#22CCEE]' : 'mx-auto mb-5 h-1 w-12 bg-[#0E9F70]'} />
+                <div className="mb-7 flex items-center justify-center">
                   <span className={index === 1 ? 'flex h-11 w-11 items-center justify-center bg-[#F0ECFF] text-[#6D4BF6]' : index === 3 ? 'flex h-11 w-11 items-center justify-center bg-[#E9FBF4] text-[#0E9F70]' : 'flex h-11 w-11 items-center justify-center bg-[#EEF3FF] text-[#1B62F0]'}>
                   <a.icon size={20} />
                 </span>
@@ -470,10 +574,10 @@ export function LandingPage() {
           <div className="bg-[#0B1526] p-8 text-white">
             <SectionEyebrow n="04" label="Les avantages" />
             <h2 className="mb-5 text-[clamp(28px,3.1vw,42px)] font-bold leading-[1.08] tracking-tight">
-              Simple, moderne et accessible partout
+              Les avantages de MEDAARIS
             </h2>
             <p className="mb-8 max-w-[420px] text-[16px] leading-8 text-[#B7C0D6]">
-              Une solution claire pour fluidifier les opérations, sécuriser les données et accompagner la croissance de votre établissement.
+              Avec MEDAARIS, votre établissement bénéficie de nombreux avantages.
             </p>
             <div className="grid grid-cols-3 gap-3 border-t border-white/10 pt-6">
               {[
@@ -508,10 +612,10 @@ export function LandingPage() {
           <div className="mb-10 max-w-[780px]">
             <SectionEyebrow n="05" label="Pourquoi nous choisir ?" />
             <h2 className="mb-4 text-[clamp(28px,3.4vw,44px)] font-bold leading-[1.08] tracking-tight">
-              Pourquoi les établissements nous choisissent
+              Pourquoi les établissements nous font confiance
             </h2>
             <p className="text-[16px] leading-8 text-[#56617A]">
-              MEDAARIS apporte une reponse claire aux vrais enjeux quotidiens: organisation, collaboration, suivi et service aux familles.
+              MEDAARIS accompagne les établissements qui souhaitent moderniser leur gestion et offrir un meilleur service à leur communauté éducative.
             </p>
           </div>
 
@@ -520,9 +624,9 @@ export function LandingPage() {
               <div className="mb-7 flex h-13 w-13 items-center justify-center bg-white/15">
                 <Target size={25} />
               </div>
-              <h3 className="mb-4 text-2xl font-bold leading-tight">Un choix guide par les resultats.</h3>
+              <h3 className="mb-4 text-2xl font-bold leading-tight">Notre plateforme leur permet de</h3>
               <p className="text-[15px] leading-7 text-white/85">
-                Les établissements cherchent une solution qui reduit la charge administrative sans compliquer les usages.
+                Moderniser leur gestion et offrir un meilleur service à leur communauté éducative.
               </p>
             </article>
 
@@ -559,11 +663,11 @@ export function LandingPage() {
           <div>
             <SectionEyebrow n="06" label="Niveaux compatibles" />
             <h2 className="mb-4 text-[clamp(26px,3.5vw,40px)] font-bold leading-[1.1] tracking-tight">
-              Compatible avec tous les niveaux
+              Une solution adaptée à tous les niveaux
             </h2>
             <p className="max-w-[500px] text-[17px] leading-relaxed text-[#56617A]">
-              MEDAARIS accompagne les établissements de tous les niveaux scolaires,
-              de la maternelle au lycée.
+              Quelle que soit la taille de votre établissement, MEDAARIS s&apos;adapte à votre
+              organisation et évolue avec vos besoins.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -682,12 +786,180 @@ export function LandingPage() {
         </div>
       </section>
 
+      {/* ── Tarification ── */}
+      <section id="tarifs" className="bg-white">
+        <div className="mx-auto max-w-[1240px] px-2 py-14 sm:px-3 lg:px-4 lg:py-20">
+          {/* Header */}
+          <div className="mb-10 text-center">
+            <SectionEyebrow n="09" label="Tarification" center />
+            <h2 className="mb-4 text-[clamp(28px,3.5vw,44px)] font-bold leading-[1.08] tracking-tight">
+              Choisissez l&apos;offre adapt&eacute;e &agrave; votre &eacute;tablissement
+            </h2>
+            <p className="mx-auto max-w-[560px] text-[17px] leading-relaxed text-[#56617A]">
+              Des formules simples, transparentes et &eacute;volutives pour accompagner les
+              &eacute;tablissements de toutes tailles.
+            </p>
+          </div>
+
+          {/* Plans grid — compact horizontal cards */}
+          <div className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {plans.map((plan) => (
+              <article
+                key={plan.id}
+                className={`relative flex flex-col border transition hover:shadow-[0_14px_30px_rgba(15,23,42,0.08)] ${
+                  plan.featured
+                    ? 'border-[#6D4BF6] bg-[#0B1526] text-white'
+                    : 'border-[#E2E8F4] bg-white hover:border-[#C9D9FF]'
+                }`}
+              >
+                {plan.featured && (
+                  <div className="absolute -top-px left-0 right-0 h-1 bg-[#6D4BF6]" />
+                )}
+
+                <div className="p-5">
+                  {/* Badge row */}
+                  <div className="mb-3 flex items-center justify-between">
+                    <div className="h-1 w-8" style={{ backgroundColor: plan.featured ? '#6D4BF6' : plan.color }} />
+                    {plan.featured && (
+                      <span className="bg-[#6D4BF6]/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#A78BFA]">
+                        Recommand&eacute;
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Name + students */}
+                  <h3 className={`text-lg font-bold ${plan.featured ? 'text-white' : 'text-[#0B1526]'}`}>
+                    {plan.name}
+                  </h3>
+                  <p className={`mb-3 text-xs leading-5 ${plan.featured ? 'text-[#9BA6BE]' : 'text-[#56617A]'}`}>
+                    {plan.tagline}
+                  </p>
+                  <div
+                    className="mb-4 inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider"
+                    style={{ backgroundColor: plan.featured ? 'rgba(109,75,246,0.2)' : plan.bg, color: plan.featured ? '#A78BFA' : plan.color }}
+                  >
+                    Jusqu&apos;&agrave; {plan.students}&nbsp;&eacute;l&egrave;ves
+                  </div>
+
+                  {/* Pricing — compact */}
+                  <div className={`mb-4 border-t pt-4 ${plan.featured ? 'border-white/10' : 'border-[#F1F5F9]'}`}>
+                    <div className="mb-2 flex items-baseline justify-between">
+                      <span className={`text-[10px] font-semibold uppercase tracking-widest ${plan.featured ? 'text-[#9BA6BE]' : 'text-[#98A2B8]'}`}>Inscription</span>
+                      <span className={`text-base font-bold ${plan.featured ? 'text-white' : 'text-[#0B1526]'}`}>{plan.inscription} <span className={`text-[10px] font-semibold ${plan.featured ? 'text-[#9BA6BE]' : 'text-[#56617A]'}`}>MRU</span></span>
+                    </div>
+                    <div className="flex items-baseline justify-between">
+                      <span className={`text-[10px] font-semibold uppercase tracking-widest ${plan.featured ? 'text-[#9BA6BE]' : 'text-[#98A2B8]'}`}>Mensuel</span>
+                      <span className="text-2xl font-bold tracking-tight" style={{ color: plan.featured ? '#A78BFA' : plan.color }}>{plan.monthly} <span className={`text-[10px] font-semibold ${plan.featured ? 'text-[#9BA6BE]' : 'text-[#56617A]'}`}>MRU</span></span>
+                    </div>
+                  </div>
+
+                  {/* Features — compact list */}
+                  <ul className="mb-5 flex flex-col gap-1.5">
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-center gap-2">
+                        <Check size={12} style={{ color: plan.featured ? '#A78BFA' : plan.color }} className="flex-none" />
+                        <span className={`text-[13px] leading-5 ${plan.featured ? 'text-[#B7C0D6]' : 'text-[#34405A]'}`}>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* CTA */}
+                  <a
+                    href="#contact"
+                    className={`block w-full py-2.5 text-center text-sm font-bold !text-white transition ${
+                      plan.featured
+                        ? 'bg-[#6D4BF6] hover:bg-[#5B3FD4]'
+                        : 'hover:opacity-90'
+                    }`}
+                    style={!plan.featured ? { backgroundColor: plan.color } : {}}
+                  >
+                    {plan.cta}
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* Custom plan — compact */}
+          <div className="mb-8 border border-[#1B62F0] bg-[#0B1526]">
+            <div className="flex flex-col gap-6 p-6 sm:flex-row sm:items-center sm:justify-between lg:p-8">
+              <div className="flex-1">
+                <div className="mb-2 inline-flex items-center gap-2 border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#22CCEE]">
+                  Contrat sur mesure
+                </div>
+                <h3 className="mb-2 text-xl font-bold text-white">
+                  Une solution adapt&eacute;e &agrave; votre organisation
+                </h3>
+                <p className="mb-4 max-w-[520px] text-sm leading-6 text-[#9BA6BE]">
+                  Vous g&eacute;rez plusieurs &eacute;tablissements ou avez des besoins sp&eacute;cifiques&nbsp;?
+                  Notre &eacute;quipe vous accompagne avec une offre personnalis&eacute;e.
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {customAudiences.map((a) => (
+                    <span key={a} className="border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-[#B7C0D6]">
+                      {a}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="flex flex-col items-center gap-3 sm:min-w-[180px]">
+                <div className="text-center">
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-[#9BA6BE]">Tarification</div>
+                  <div className="mt-0.5 text-xl font-bold text-[#22CCEE]">Sur devis</div>
+                </div>
+                <a href="#contact" className="block w-full bg-[#1B62F0] px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#0A46A8]">
+                  Demander un devis
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* All plans include */}
+          <div className="mb-8 bg-[#0B1526] p-6 lg:p-8">
+            <div className="mb-5 text-center">
+              <p className="mb-1 text-xs font-bold uppercase tracking-[.14em] text-[#22CCEE]">Inclus dans toutes les offres</p>
+              <h3 className="text-lg font-bold text-white">
+                Chaque formule comprend l&apos;essentiel pour bien d&eacute;marrer.
+              </h3>
+            </div>
+            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
+              {allPlansInclude.map((item) => (
+                <div key={item} className="flex items-center gap-2.5 border border-white/10 bg-white/[0.04] px-3.5 py-3">
+                  <span className="flex h-6 w-6 flex-none items-center justify-center bg-[#1B62F0] text-white">
+                    <Check size={12} />
+                  </span>
+                  <span className="text-[13px] font-medium text-[#B7C0D6]">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Pricing CTA */}
+          <div className="flex flex-col items-center gap-4 border border-[#E2E8F4] bg-[#F7F9FE] px-6 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
+            <div>
+              <h3 className="mb-1 text-base font-bold text-[#0B1526]">Besoin d&apos;aide pour choisir&nbsp;?</h3>
+              <p className="text-sm text-[#56617A]">
+                Notre &eacute;quipe vous conseille et vous oriente vers la formule la plus adapt&eacute;e.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <a href="#contact" className="bg-[#1B62F0] px-5 py-2.5 text-sm font-bold !text-white transition hover:bg-[#0A46A8] hover:!text-white">
+                Demander une d&eacute;mo gratuite
+              </a>
+              <a href="#contact" className="border border-[#C9D5EA] bg-white px-5 py-2.5 text-sm font-bold !text-[#0B1526] transition hover:border-[#1B62F0] hover:!text-[#1B62F0]">
+                Nous contacter
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Témoignages ── */}
       <section className="bg-[#F4F7FE]">
         <div className="mx-auto max-w-[1240px] px-2 py-14 sm:px-3 lg:px-4 lg:py-20">
           <div className="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <SectionEyebrow n="09" label="Témoignages" />
+              <SectionEyebrow n="10" label="Témoignages" />
               <h2 className="max-w-[620px] text-[clamp(28px,3.5vw,44px)] font-bold leading-[1.08] tracking-tight">
                 Des retours concrets d'établissements accompagnés
               </h2>
@@ -761,15 +1033,15 @@ export function LandingPage() {
                 Prêt à moderniser votre établissement ?
               </h2>
               <p className="max-w-[610px] text-[17px] leading-8 text-[#B7C0D6]">
-                Découvrez comment MEDAARIS peut simplifier votre gestion scolaire et accompagner vos équipes au quotidien.
+                Découvrez comment MEDAARIS peut transformer durablement la gestion de votre école et accompagner votre établissement dans sa transformation numérique.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
               <a href="#contact" className="bg-[#1B62F0] px-7 py-4 text-center font-semibold !text-white transition hover:bg-[#0A46A8] hover:!text-white">
                 Demander une démonstration
               </a>
-              <a href="https://wa.me/221785984396" className="border border-white/20 bg-white/10 px-7 py-4 text-center font-semibold text-white transition hover:bg-white/15">
-                Écrire sur WhatsApp
+              <a href="#contact" className="border border-white/20 bg-white/10 px-7 py-4 text-center font-semibold text-white transition hover:bg-white/15">
+                Créer un compte
               </a>
             </div>
           </div>
@@ -783,11 +1055,11 @@ export function LandingPage() {
             <div className="flex flex-col justify-center bg-[#F4F7FE] p-8 lg:p-12">
               <SectionEyebrow n="11" label="Contact" />
               <h2 className="mb-4 text-[clamp(26px,3vw,40px)] font-bold leading-[1.08] tracking-tight text-[#0B1526]">
-                Notre équipe est à votre écoute
+                Notre équipe est à votre disposition
               </h2>
               <p className="mb-8 max-w-[460px] text-[16px] leading-7 text-[#56617A]">
-                Nous vous accompagnons dans la digitalisation de votre établissement.
-                Contactez-nous par le canal de votre choix.
+                Notre équipe est à votre disposition pour répondre à toutes vos questions
+                et vous accompagner dans votre projet.
               </p>
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div className="border border-[#DCE7FF] bg-white p-4">
@@ -802,9 +1074,11 @@ export function LandingPage() {
             </div>
 
             <div className="divide-y divide-[#F1F5F9]">
-              <ContactRow icon={Phone}      label="Téléphone" value="22113543"         href="tel:22113543" />
-              <ContactRow icon={Smartphone} label="WhatsApp"  value="+221 785984396"   href="https://wa.me/221785984396" highlight />
-              <ContactRow icon={Globe2}     label="Site web"  value="www.medaaris.com" href="http://www.medaaris.com/" />
+              <ContactRow icon={Phone}      label="Téléphone" value="22113543"                    href="tel:22113543" />
+              <ContactRow icon={Smartphone} label="WhatsApp"  value="+221 785984396"              href="https://wa.me/221785984396" highlight />
+              <ContactRow icon={Mail}       label="E-mail"    value="contact@medaaris.com"        href="mailto:contact@medaaris.com" />
+              <ContactRow icon={Globe2}     label="Site web"  value="www.medaaris.com"            href="http://www.medaaris.com/" />
+              <ContactRow icon={Clock}      label="Horaires"  value="Lundi au Samedi : 08h – 18h" href="#contact" />
             </div>
           </div>
         </div>
@@ -829,11 +1103,16 @@ function MissionCard({ label, children, color, bg }: { label: string; children: 
 
 /* ─── Navbar ─────────────────────────────────────────────────────────── */
 
-function Navbar({ activeId, menuOpen, onToggle, onClose }: { activeId: string; menuOpen: boolean; onToggle: () => void; onClose: () => void }) {
+function Navbar({ activeId, menuOpen, onToggle, onClose, onNav }: { activeId: string; menuOpen: boolean; onToggle: () => void; onClose: () => void; onNav: (id: string) => void }) {
+  const handleClick = (href: string) => {
+    onNav(href.replace('#', ''));
+    onClose();
+  };
+
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-[#DDE5F2] bg-white shadow-[0_1px_8px_rgba(15,23,42,0.05)]">
+    <header className="fixed left-0 top-0 z-50 w-full border-b border-[#DDE5F2] bg-white shadow-[0_1px_8px_rgba(15,23,42,0.05)]" style={{ zoom: 0.8 }}>
       <nav className="mx-auto flex max-w-[1240px] items-center justify-between gap-5 px-2 py-3 sm:px-3 lg:px-4">
-        <a href="#accueil" aria-label="MEDAARIS" className="flex-none">
+        <a href="#accueil" onClick={() => handleClick('#accueil')} aria-label="MEDAARIS" className="flex-none">
           <Image src="/medaaris-logo.jpeg" alt="MEDAARIS" width={172} height={42} className="h-11 w-auto" priority />
         </a>
 
@@ -842,6 +1121,7 @@ function Navbar({ activeId, menuOpen, onToggle, onClose }: { activeId: string; m
             <a
               key={item.href}
               href={item.href}
+              onClick={() => handleClick(item.href)}
               className={activeId === item.href.slice(1)
                 ? 'border-b-2 border-[#1B62F0] pb-1 text-[15px] font-semibold text-[#1B62F0] transition'
                 : 'border-b-2 border-transparent pb-1 text-[15px] font-semibold text-[#111827] transition hover:text-[#1B62F0]'}
@@ -852,7 +1132,7 @@ function Navbar({ activeId, menuOpen, onToggle, onClose }: { activeId: string; m
         </div>
 
         <div className="hidden items-center gap-5 lg:flex">
-          <a href="#contact" className="bg-[#1B62F0] px-6 py-3 text-[15px] font-semibold !text-white transition hover:bg-[#0A46A8] hover:!text-white">
+          <a href="#contact" onClick={() => handleClick('#contact')} className="bg-[#1B62F0] px-6 py-3 text-[15px] font-semibold !text-white transition hover:bg-[#0A46A8] hover:!text-white">
             Demander une démo
           </a>
         </div>
@@ -874,7 +1154,7 @@ function Navbar({ activeId, menuOpen, onToggle, onClose }: { activeId: string; m
               <a
                 key={item.href}
                 href={item.href}
-                onClick={onClose}
+                onClick={() => handleClick(item.href)}
                 className={activeId === item.href.slice(1)
                   ? 'border-l-2 border-[#1B62F0] px-3 py-3 font-semibold text-[#1B62F0]'
                   : 'border-l-2 border-transparent px-3 py-3 font-semibold text-[#0B1526] hover:text-[#1B62F0]'}
@@ -882,7 +1162,7 @@ function Navbar({ activeId, menuOpen, onToggle, onClose }: { activeId: string; m
                 {item.label}
               </a>
             ))}
-            <a href="#contact" onClick={onClose} className="mt-3 bg-[#1B62F0] px-4 py-3 text-center font-semibold !text-white hover:!text-white">
+            <a href="#contact" onClick={() => handleClick('#contact')} className="mt-3 bg-[#1B62F0] px-4 py-3 text-center font-semibold !text-white hover:!text-white">
               Demander une démo
             </a>
           </div>
@@ -1049,6 +1329,7 @@ function Footer() {
             <div className="flex flex-col gap-3 text-sm text-[#9BA6BE]">
               <a href="tel:22113543"                className="transition hover:text-white">22113543</a>
               <a href="https://wa.me/221785984396" className="transition hover:text-white">+221 785984396</a>
+              <a href="mailto:contact@medaaris.com" className="transition hover:text-white">contact@medaaris.com</a>
               <a href="http://www.medaaris.com/"   className="transition hover:text-white">www.medaaris.com</a>
             </div>
           </div>
