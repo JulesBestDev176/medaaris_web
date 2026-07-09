@@ -1076,7 +1076,7 @@ export function LandingPage() {
             <div className="divide-y divide-[#F1F5F9]">
               <ContactRow icon={Phone}      label="Téléphone" value="22113543"                    href="tel:22113543" />
               <ContactRow icon={Smartphone} label="WhatsApp"  value="+221 785984396"              href="https://wa.me/221785984396" highlight />
-              <ContactRow icon={Mail}       label="E-mail"    value="contact@medaaris.com"        href="mailto:contact@medaaris.com" />
+              <ContactRow icon={Mail}       label="E-mail"    value="medaaris.education@gmail.com"        href="mailto:medaaris.education@gmail.com" />
               <ContactRow icon={Globe2}     label="Site web"  value="www.medaaris.com"            href="http://www.medaaris.com/" />
               <ContactRow icon={Clock}      label="Horaires"  value="Lundi au Samedi : 08h – 18h" href="#contact" />
             </div>
@@ -1329,7 +1329,7 @@ function Footer() {
             <div className="flex flex-col gap-3 text-sm text-[#9BA6BE]">
               <a href="tel:22113543"                className="transition hover:text-white">22113543</a>
               <a href="https://wa.me/221785984396" className="transition hover:text-white">+221 785984396</a>
-              <a href="mailto:contact@medaaris.com" className="transition hover:text-white">contact@medaaris.com</a>
+              <a href="mailto:medaaris.education@gmail.com" className="transition hover:text-white">medaaris.education@gmail.com</a>
               <a href="http://www.medaaris.com/"   className="transition hover:text-white">www.medaaris.com</a>
             </div>
           </div>
