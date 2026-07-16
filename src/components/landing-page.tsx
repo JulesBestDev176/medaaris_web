@@ -31,8 +31,7 @@ import {
   X,
   Zap,
 } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
-import { fetchPublicReporting, formatOptionalNumber, type PublicReporting } from '@/lib/reporting';
+import { useEffect, useState } from 'react';
 
 /* ─── Data ──────────────────────────────────────────────────────────── */
 
@@ -41,7 +40,6 @@ const navItems = [
   { href: '#apropos',    label: 'À propos' },
   { href: '#benefices',  label: 'Avantages' },
   { href: '#communaute', label: 'Communauté' },
-  { href: '#tarifs',     label: 'Tarifs' },
   { href: '#faq',        label: 'FAQ' },
   { href: '#contact',    label: 'Contact' },
 ];
@@ -188,121 +186,12 @@ const faqs: [string, string][] = [
   ['Comment contacter MEDAARIS ?', "Par téléphone, WhatsApp, e-mail ou via le formulaire de contact disponible sur notre site."],
 ];
 
-const plans = [
-  {
-    id: 'starter',
-    name: 'Starter',
-    tagline: 'Idéal pour les petits établissements',
-    students: '300',
-    inscription: '7 000',
-    monthly: '4 000',
-    color: '#0E9F70',
-    bg: '#E9FBF4',
-    features: [
-      "Jusqu'à 300 élèves",
-      'Accès à la plateforme MEDAARIS',
-      'Mises à jour régulières',
-      'Hébergement sécurisé',
-      'Sauvegardes automatiques',
-      'Support technique',
-    ],
-    cta: 'Commencer',
-    featured: false,
-  },
-  {
-    id: 'standard',
-    name: 'Standard',
-    tagline: 'Pour les établissements en développement',
-    students: '600',
-    inscription: '11 200',
-    monthly: '5 200',
-    color: '#1B62F0',
-    bg: '#EEF3FF',
-    features: [
-      "Jusqu'à 600 élèves",
-      'Toutes les fonctionnalités essentielles',
-      'Mises à jour incluses',
-      'Hébergement sécurisé',
-      'Sauvegardes automatiques',
-      'Assistance technique',
-    ],
-    cta: 'Choisir cette offre',
-    featured: false,
-  },
-  {
-    id: 'premium',
-    name: 'Premium',
-    tagline: 'Pour les établissements en pleine croissance',
-    students: '1 000',
-    inscription: '22 000',
-    monthly: '9 200',
-    color: '#6D4BF6',
-    bg: '#F0ECFF',
-    features: [
-      "Jusqu'à 1 000 élèves",
-      'Plateforme complète',
-      'Mises à jour incluses',
-      'Hébergement sécurisé',
-      'Sauvegardes automatiques',
-      'Support prioritaire',
-    ],
-    cta: 'Choisir Premium',
-    featured: true,
-  },
-  {
-    id: 'enterprise',
-    name: 'Enterprise',
-    tagline: 'Pour les grands établissements',
-    students: '1 500',
-    inscription: '30 000',
-    monthly: '18 000',
-    color: '#D97706',
-    bg: '#FEF3C7',
-    features: [
-      "Jusqu'à 1 500 élèves",
-      'Solution évolutive',
-      'Accompagnement personnalisé',
-      'Hébergement sécurisé',
-      'Sauvegardes automatiques',
-      'Support prioritaire',
-    ],
-    cta: 'Contacter un conseiller',
-    featured: false,
-  },
-] as const;
-
-const allPlansInclude = [
-  'Accès à la plateforme MEDAARIS',
-  'Hébergement sécurisé',
-  'Sauvegardes automatiques',
-  'Mises à jour régulières',
-  'Assistance technique',
-  "Formation à la prise en main",
-  'Accompagnement lors du démarrage',
-];
-
-const customAudiences = [
-  "Réseaux d'établissements scolaires",
-  'Groupes scolaires',
-  'Organisations éducatives',
-  'Structures multi-sites',
-  'Besoins spécifiques ou personnalisés',
-];
 
 /* ─── Main ──────────────────────────────────────────────────────────── */
 
 export function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [reporting, setReporting] = useState<PublicReporting | null>(null);
   const [activeId, setActiveId] = useState('accueil');
-
-  useEffect(() => {
-    let active = true;
-    fetchPublicReporting()
-      .then((d) => { if (active) setReporting(d); })
-      .catch(() => {});
-    return () => { active = false; };
-  }, []);
 
   useEffect(() => {
     const sectionIds = navItems.map((item) => item.href.replace('#', ''));
@@ -323,16 +212,6 @@ export function LandingPage() {
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
   }, []);
-
-  const stats = useMemo(
-    () => [
-      { value: formatOptionalNumber(reporting?.marketing.schools),           label: 'Établissements accompagnes' },
-      { value: formatOptionalNumber(reporting?.marketing.students),          label: 'Élèves gérés chaque jour' },
-      { value: formatOptionalNumber(reporting?.dashboard.paymentsValidated), label: 'Paiements valides' },
-      { value: formatOptionalNumber(reporting?.dashboard.pendingTasks),      label: 'Actions en cours' },
-    ],
-    [reporting],
-  );
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#F4F7FE] pt-[74px] text-[#0B1526]" style={{ zoom: 0.8 }}>
@@ -386,45 +265,10 @@ export function LandingPage() {
             </div>
           </div>
 
-          <DashboardPreview reporting={reporting} />
+          <DashboardPreview />
         </div>
       </section>
 
-      {/* ── Schools & stats ── */}
-      <section className="border-y border-[#E6EBF5] bg-white">
-        <div className="py-10">
-          <div className="mb-8">
-            <div className="mb-5 text-center">
-              <p className="mb-2 text-xs font-bold uppercase tracking-[.14em] text-[#1B62F0]">Ecoles accompagnees</p>
-              <h2 className="text-[clamp(22px,2.3vw,30px)] font-bold leading-tight text-[#0B1526]">
-                Un reseau d'établissements qui peut grandir.
-              </h2>
-            </div>
-
-            <div className="relative overflow-hidden bg-[#F7F9FE] py-5">
-              <div className="logo-marquee flex w-max items-center gap-16 pr-16">
-                {[...['Lycée Averroes', 'Groupe El Manar', 'Cours Atlas', 'Institut Ibn Sina', 'Ecole Les Cedres', 'Al Qalam School', 'Groupe Medina'], ...['Lycée Averroes', 'Groupe El Manar', 'Cours Atlas', 'Institut Ibn Sina', 'Ecole Les Cedres', 'Al Qalam School', 'Groupe Medina']].map((name, index) => (
-                  <div key={`${name}-${index}`} className="flex h-16 min-w-[130px] items-center justify-center opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0">
-                    <span className="flex h-12 w-12 items-center justify-center bg-[#EEF3FF] text-sm font-black text-[#1B62F0]">
-                      {name.split(' ').map((part) => part[0]).join('').slice(0, 2)}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="mx-auto grid max-w-[1240px] grid-cols-2 gap-3 bg-[#0B1526] p-4 sm:grid-cols-4">
-            {stats.map((s, index) => (
-              <div key={s.label} className="border border-white/10 bg-white/[0.04] p-5">
-                <div className={index === 0 ? 'mb-4 h-1 w-10 bg-[#22CCEE]' : index === 1 ? 'mb-4 h-1 w-10 bg-[#1B62F0]' : 'mb-4 h-1 w-10 bg-[#6D4BF6]'} />
-                <div className="text-[clamp(24px,2.8vw,38px)] font-bold tracking-tight text-white">{s.value}</div>
-                <div className="mt-2 text-sm leading-5 text-[#B7C0D6]">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── Qui sommes-nous ── */}
       <section id="apropos" className="bg-white">
@@ -469,14 +313,13 @@ export function LandingPage() {
               </MissionCard>
               <div className="col-span-2 border border-[#E6EBF5] bg-white p-5 shadow-[0_12px_30px_rgba(15,23,42,0.04)]">
                 <div className="mb-4 flex items-center justify-between border-b border-[#E6EBF5] pb-3">
-                  <span className="text-xs font-bold uppercase tracking-[.14em] text-[#1B62F0]">Impact</span>
-                  <span className="text-xs font-semibold text-[#98A2B8]">Données en temps réel</span>
+                  <span className="text-xs font-bold uppercase tracking-[.14em] text-[#1B62F0]">La plateforme en chiffres</span>
                 </div>
                 <div className="grid grid-cols-3 gap-3 text-center">
                   {[
-                    { val: formatOptionalNumber(reporting?.marketing.schools), label: 'Établissements' },
-                    { val: formatOptionalNumber(reporting?.marketing.students), label: 'Élèves' },
                     { val: '24h/24', label: 'Disponible' },
+                    { val: '100 %', label: 'Cloud & sécurisé' },
+                    { val: 'Multi', label: 'Rôles & profils' },
                   ].map((s) => (
                     <div key={s.label} className="bg-[#F7F9FE] px-3 py-4">
                       <div className="text-2xl font-bold text-[#1B62F0]">{s.val}</div>
@@ -786,168 +629,53 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* ── Tarification ── */}
-      <section id="tarifs" className="bg-white">
+      {/* ── Offre sur devis ── */}
+      <section className="bg-white">
         <div className="mx-auto max-w-[1240px] px-2 py-14 sm:px-3 lg:px-4 lg:py-20">
-          {/* Header */}
           <div className="mb-10 text-center">
-            <SectionEyebrow n="09" label="Tarification" center />
+            <SectionEyebrow n="09" label="Nos offres" center />
             <h2 className="mb-4 text-[clamp(28px,3.5vw,44px)] font-bold leading-[1.08] tracking-tight">
-              Choisissez l&apos;offre adapt&eacute;e &agrave; votre &eacute;tablissement
+              Une offre adapt&eacute;e &agrave; votre &eacute;tablissement
             </h2>
             <p className="mx-auto max-w-[560px] text-[17px] leading-relaxed text-[#56617A]">
-              Des formules simples, transparentes et &eacute;volutives pour accompagner les
-              &eacute;tablissements de toutes tailles.
+              Nos tarifs sont communiqu&eacute;s lors d&apos;un &eacute;change personnalis&eacute;.
+              Contactez-nous pour obtenir une proposition adapt&eacute;e &agrave; vos besoins.
             </p>
           </div>
 
-          {/* Plans grid — compact horizontal cards */}
-          <div className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {plans.map((plan) => (
-              <article
-                key={plan.id}
-                className={`relative flex flex-col border transition hover:shadow-[0_14px_30px_rgba(15,23,42,0.08)] ${
-                  plan.featured
-                    ? 'border-[#6D4BF6] bg-[#0B1526] text-white'
-                    : 'border-[#E2E8F4] bg-white hover:border-[#C9D9FF]'
-                }`}
-              >
-                {plan.featured && (
-                  <div className="absolute -top-px left-0 right-0 h-1 bg-[#6D4BF6]" />
-                )}
-
-                <div className="p-5">
-                  {/* Badge row */}
-                  <div className="mb-3 flex items-center justify-between">
-                    <div className="h-1 w-8" style={{ backgroundColor: plan.featured ? '#6D4BF6' : plan.color }} />
-                    {plan.featured && (
-                      <span className="bg-[#6D4BF6]/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#A78BFA]">
-                        Recommand&eacute;
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Name + students */}
-                  <h3 className={`text-lg font-bold ${plan.featured ? 'text-white' : 'text-[#0B1526]'}`}>
-                    {plan.name}
-                  </h3>
-                  <p className={`mb-3 text-xs leading-5 ${plan.featured ? 'text-[#9BA6BE]' : 'text-[#56617A]'}`}>
-                    {plan.tagline}
-                  </p>
-                  <div
-                    className="mb-4 inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider"
-                    style={{ backgroundColor: plan.featured ? 'rgba(109,75,246,0.2)' : plan.bg, color: plan.featured ? '#A78BFA' : plan.color }}
-                  >
-                    Jusqu&apos;&agrave; {plan.students}&nbsp;&eacute;l&egrave;ves
-                  </div>
-
-                  {/* Pricing — compact */}
-                  <div className={`mb-4 border-t pt-4 ${plan.featured ? 'border-white/10' : 'border-[#F1F5F9]'}`}>
-                    <div className="mb-2 flex items-baseline justify-between">
-                      <span className={`text-[10px] font-semibold uppercase tracking-widest ${plan.featured ? 'text-[#9BA6BE]' : 'text-[#98A2B8]'}`}>Inscription</span>
-                      <span className={`text-base font-bold ${plan.featured ? 'text-white' : 'text-[#0B1526]'}`}>{plan.inscription} <span className={`text-[10px] font-semibold ${plan.featured ? 'text-[#9BA6BE]' : 'text-[#56617A]'}`}>MRU</span></span>
-                    </div>
-                    <div className="flex items-baseline justify-between">
-                      <span className={`text-[10px] font-semibold uppercase tracking-widest ${plan.featured ? 'text-[#9BA6BE]' : 'text-[#98A2B8]'}`}>Mensuel</span>
-                      <span className="text-2xl font-bold tracking-tight" style={{ color: plan.featured ? '#A78BFA' : plan.color }}>{plan.monthly} <span className={`text-[10px] font-semibold ${plan.featured ? 'text-[#9BA6BE]' : 'text-[#56617A]'}`}>MRU</span></span>
-                    </div>
-                  </div>
-
-                  {/* Features — compact list */}
-                  <ul className="mb-5 flex flex-col gap-1.5">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2">
-                        <Check size={12} style={{ color: plan.featured ? '#A78BFA' : plan.color }} className="flex-none" />
-                        <span className={`text-[13px] leading-5 ${plan.featured ? 'text-[#B7C0D6]' : 'text-[#34405A]'}`}>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* CTA */}
-                  <a
-                    href="#contact"
-                    className={`block w-full py-2.5 text-center text-sm font-bold !text-white transition ${
-                      plan.featured
-                        ? 'bg-[#6D4BF6] hover:bg-[#5B3FD4]'
-                        : 'hover:opacity-90'
-                    }`}
-                    style={!plan.featured ? { backgroundColor: plan.color } : {}}
-                  >
-                    {plan.cta}
-                  </a>
-                </div>
-              </article>
+          <div className="mb-8 grid gap-5 sm:grid-cols-3">
+            {[
+              { icon: ShieldCheck, color: '#1B62F0', bg: '#EEF3FF', title: 'H&eacute;bergement s&eacute;curis&eacute;', desc: 'Vos donn&eacute;es sont h&eacute;berg&eacute;es dans un environnement fiable, avec sauvegardes automatiques.' },
+              { icon: Zap,         color: '#10B981', bg: '#ECFDF5', title: 'Mise en service rapide',    desc: 'Notre &eacute;quipe vous accompagne de la configuration au d&eacute;marrage, sans complexit&eacute; technique.' },
+              { icon: MessageCircle, color: '#6D4BF6', bg: '#F0ECFF', title: 'Support d&eacute;di&eacute;', desc: 'Un interlocuteur disponible pour r&eacute;pondre &agrave; vos questions et vous accompagner au quotidien.' },
+            ].map(({ icon: Icon, color, bg, title, desc }) => (
+              <div key={title} className="border border-[#E6EBF5] bg-white p-6 shadow-[0_4px_16px_rgba(15,23,42,0.04)]">
+                <span className="mb-4 flex h-10 w-10 items-center justify-center" style={{ backgroundColor: bg }}>
+                  <Icon size={20} style={{ color }} />
+                </span>
+                <h3 className="mb-2 text-base font-bold text-[#0B1526]" dangerouslySetInnerHTML={{ __html: title }} />
+                <p className="text-sm leading-6 text-[#56617A]" dangerouslySetInnerHTML={{ __html: desc }} />
+              </div>
             ))}
           </div>
 
-          {/* Custom plan — compact */}
-          <div className="mb-8 border border-[#1B62F0] bg-[#0B1526]">
-            <div className="flex flex-col gap-6 p-6 sm:flex-row sm:items-center sm:justify-between lg:p-8">
-              <div className="flex-1">
-                <div className="mb-2 inline-flex items-center gap-2 border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#22CCEE]">
-                  Contrat sur mesure
-                </div>
-                <h3 className="mb-2 text-xl font-bold text-white">
-                  Une solution adapt&eacute;e &agrave; votre organisation
-                </h3>
-                <p className="mb-4 max-w-[520px] text-sm leading-6 text-[#9BA6BE]">
-                  Vous g&eacute;rez plusieurs &eacute;tablissements ou avez des besoins sp&eacute;cifiques&nbsp;?
-                  Notre &eacute;quipe vous accompagne avec une offre personnalis&eacute;e.
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {customAudiences.map((a) => (
-                    <span key={a} className="border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-[#B7C0D6]">
-                      {a}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="flex flex-col items-center gap-3 sm:min-w-[180px]">
-                <div className="text-center">
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-[#9BA6BE]">Tarification</div>
-                  <div className="mt-0.5 text-xl font-bold text-[#22CCEE]">Sur devis</div>
-                </div>
-                <a href="#contact" className="block w-full bg-[#1B62F0] px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#0A46A8]">
-                  Demander un devis
-                </a>
-              </div>
+          <div className="border border-[#1B62F0] bg-[#0B1526] p-8 text-center lg:p-12">
+            <div className="mb-2 inline-flex items-center gap-2 border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#22CCEE]">
+              Obtenir un devis
             </div>
-          </div>
-
-          {/* All plans include */}
-          <div className="mb-8 bg-[#0B1526] p-6 lg:p-8">
-            <div className="mb-5 text-center">
-              <p className="mb-1 text-xs font-bold uppercase tracking-[.14em] text-[#22CCEE]">Inclus dans toutes les offres</p>
-              <h3 className="text-lg font-bold text-white">
-                Chaque formule comprend l&apos;essentiel pour bien d&eacute;marrer.
-              </h3>
-            </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4">
-              {allPlansInclude.map((item) => (
-                <div key={item} className="flex items-center gap-2.5 border border-white/10 bg-white/[0.04] px-3.5 py-3">
-                  <span className="flex h-6 w-6 flex-none items-center justify-center bg-[#1B62F0] text-white">
-                    <Check size={12} />
-                  </span>
-                  <span className="text-[13px] font-medium text-[#B7C0D6]">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Pricing CTA */}
-          <div className="flex flex-col items-center gap-4 border border-[#E2E8F4] bg-[#F7F9FE] px-6 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
-            <div>
-              <h3 className="mb-1 text-base font-bold text-[#0B1526]">Besoin d&apos;aide pour choisir&nbsp;?</h3>
-              <p className="text-sm text-[#56617A]">
-                Notre &eacute;quipe vous conseille et vous oriente vers la formule la plus adapt&eacute;e.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <a href="#contact" className="bg-[#1B62F0] px-5 py-2.5 text-sm font-bold !text-white transition hover:bg-[#0A46A8] hover:!text-white">
-                Demander une d&eacute;mo gratuite
+            <h3 className="mb-3 text-2xl font-bold text-white">
+              Contactez-nous pour conna&icirc;tre nos tarifs
+            </h3>
+            <p className="mx-auto mb-8 max-w-[520px] text-[15px] leading-7 text-[#9BA6BE]">
+              Nos offres sont con&ccedil;ues pour s&apos;adapter &agrave; chaque &eacute;tablissement — petite &eacute;cole, lyc&eacute;e ou
+              r&eacute;seau multi-sites. &Eacute;changeons ensemble pour vous proposer la meilleure solution.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="#contact" className="bg-[#1B62F0] px-7 py-3.5 text-sm font-bold !text-white transition hover:bg-[#0A46A8] hover:!text-white">
+                Demander un devis gratuit
               </a>
-              <a href="#contact" className="border border-[#C9D5EA] bg-white px-5 py-2.5 text-sm font-bold !text-[#0B1526] transition hover:border-[#1B62F0] hover:!text-[#1B62F0]">
-                Nous contacter
+              <a href="#contact" className="border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-bold !text-white transition hover:bg-white/10 hover:!text-white">
+                Demander une d&eacute;mo
               </a>
             </div>
           </div>
@@ -1052,34 +780,38 @@ export function LandingPage() {
       <section id="contact" className="bg-white">
         <div className="mx-auto max-w-[1240px] px-2 py-14 sm:px-3 lg:px-4 lg:py-20">
           <div className="grid border border-[#E2E8F4] lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="flex flex-col justify-center bg-[#F4F7FE] p-8 lg:p-12">
-              <SectionEyebrow n="11" label="Contact" />
-              <h2 className="mb-4 text-[clamp(26px,3vw,40px)] font-bold leading-[1.08] tracking-tight text-[#0B1526]">
-                Notre équipe est à votre disposition
-              </h2>
-              <p className="mb-8 max-w-[460px] text-[16px] leading-7 text-[#56617A]">
-                Notre équipe est à votre disposition pour répondre à toutes vos questions
-                et vous accompagner dans votre projet.
-              </p>
-              <div className="grid grid-cols-2 gap-3 text-sm">
-                <div className="border border-[#DCE7FF] bg-white p-4">
-                  <div className="mb-1 font-bold text-[#1B62F0]">Réponse rapide</div>
-                  <div className="text-[#56617A]">WhatsApp ou téléphone</div>
+
+            {/* Panneau gauche — infos */}
+            <div className="flex flex-col justify-between bg-[#F4F7FE] p-8 lg:p-12">
+              <div>
+                <SectionEyebrow n="11" label="Contact" />
+                <h2 className="mb-4 text-[clamp(26px,3vw,40px)] font-bold leading-[1.08] tracking-tight text-[#0B1526]">
+                  Obtenez un devis personnalis&eacute;
+                </h2>
+                <p className="mb-8 max-w-[420px] text-[16px] leading-7 text-[#56617A]">
+                  Remplissez le formulaire et notre &eacute;quipe vous recontacte rapidement
+                  pour vous pr&eacute;senter MEDAARIS et &eacute;tablir une offre adapt&eacute;e
+                  &agrave; votre &eacute;tablissement.
+                </p>
+                <div className="mb-8 space-y-1 border-l-2 border-[#1B62F0] pl-4">
+                  {[
+                    'D&eacute;monstration gratuite et sans engagement',
+                    'Offre adapt&eacute;e &agrave; la taille de votre &eacute;tablissement',
+                    'R&eacute;ponse sous 24&nbsp;h',
+                  ].map((t) => (
+                    <p key={t} className="text-[14px] font-medium text-[#56617A]" dangerouslySetInnerHTML={{ __html: t }} />
+                  ))}
                 </div>
-                <div className="border border-[#DCE7FF] bg-white p-4">
-                  <div className="mb-1 font-bold text-[#1B62F0]">Démo guidée</div>
-                  <div className="text-[#56617A]">Selon votre école</div>
-                </div>
+              </div>
+              <div className="space-y-2">
+                <ContactRow icon={Smartphone} label="WhatsApp"  value="+221 785984396"              href="https://wa.me/221785984396" highlight />
+                <ContactRow icon={Mail}       label="E-mail"    value="medaaris.education@gmail.com" href="mailto:medaaris.education@gmail.com" />
+                <ContactRow icon={Clock}      label="Horaires"  value="Lun – Sam : 08h – 18h"       href="#contact" />
               </div>
             </div>
 
-            <div className="divide-y divide-[#F1F5F9]">
-              <ContactRow icon={Phone}      label="Téléphone" value="22113543"                    href="tel:22113543" />
-              <ContactRow icon={Smartphone} label="WhatsApp"  value="+221 785984396"              href="https://wa.me/221785984396" highlight />
-              <ContactRow icon={Mail}       label="E-mail"    value="medaaris.education@gmail.com"        href="mailto:medaaris.education@gmail.com" />
-              <ContactRow icon={Globe2}     label="Site web"  value="www.medaaris.com"            href="http://www.medaaris.com/" />
-              <ContactRow icon={Clock}      label="Horaires"  value="Lundi au Samedi : 08h – 18h" href="#contact" />
-            </div>
+            {/* Panneau droit — formulaire */}
+            <ContactForm />
           </div>
         </div>
       </section>
@@ -1174,7 +906,7 @@ function Navbar({ activeId, menuOpen, onToggle, onClose, onNav }: { activeId: st
 
 /* ─── DashboardPreview ───────────────────────────────────────────────── */
 
-function DashboardPreview({ reporting }: { reporting: PublicReporting | null }) {
+function DashboardPreview() {
   return (
     <div className="animate-float-a w-full border border-[#DDE5F2] bg-white p-5 shadow-[0_18px_44px_rgba(15,23,42,0.12)] lg:justify-self-end">
       <div className="mb-4 flex items-center gap-2 border-b border-[#F1F5F9] pb-3">
@@ -1192,23 +924,8 @@ function DashboardPreview({ reporting }: { reporting: PublicReporting | null }) 
         <span className="flex h-9 w-9 items-center justify-center bg-[#1B62F0] text-xs font-bold text-white">MD</span>
       </div>
 
-      <div className="mb-4 grid grid-cols-3 gap-2.5">
-        <div className="border border-[#DCE7FF] bg-[#EEF3FF] p-3">
-          <div className="text-xl font-bold text-[#1B62F0]">{formatOptionalNumber(reporting?.dashboard.students)}</div>
-          <div className="text-xs font-medium text-[#56617A]">Élèves</div>
-        </div>
-        <div className="border border-[#DCE7FF] bg-[#EEF3FF] p-3">
-          <div className="text-xl font-bold text-[#1B62F0]">{formatOptionalNumber(reporting?.dashboard.attendanceRate, ' %')}</div>
-          <div className="text-xs font-medium text-[#56617A]">Présence</div>
-        </div>
-        <div className="border border-[#E6EBF5] bg-[#F4F7FE] p-3">
-          <div className="text-xl font-bold text-[#0B1526]">{formatOptionalNumber(reporting?.dashboard.pendingTasks)}</div>
-          <div className="text-xs font-medium text-[#56617A]">À traiter</div>
-        </div>
-      </div>
-
       <div className="mb-4 border border-[#EAEFF9] bg-[#F7F9FE] p-4">
-        <div className="mb-3 text-xs font-semibold text-[#56617A]">Présences · cette semaine</div>
+        <div className="mb-3 text-xs font-semibold text-[#56617A]">Activité · cette semaine</div>
         <div className="flex h-14 items-end gap-2">
           {[58, 78, 96, 68, 84].map((h, i) => (
             <div key={i} className={`flex-1 ${i === 2 ? 'bg-[#1B62F0]' : 'bg-[#DCE7FF]'}`} style={{ height: `${h}%` }} />
@@ -1217,9 +934,9 @@ function DashboardPreview({ reporting }: { reporting: PublicReporting | null }) 
       </div>
 
       <div className="space-y-2">
-        <DashLine label="Paiements valides"  value={formatOptionalNumber(reporting?.dashboard.paymentsValidated)} />
-        <DashLine label="Bulletins prets"    value={formatOptionalNumber(reporting?.dashboard.bulletinsReady)} />
-        <DashLine label="Absences a traiter" value={formatOptionalNumber(reporting?.dashboard.pendingAbsences)} />
+        <DashLine label="Paiements validés"  value="✓" />
+        <DashLine label="Bulletins prêts"    value="✓" />
+        <DashLine label="Absences traitées"  value="✓" />
       </div>
     </div>
   );
@@ -1258,6 +975,92 @@ function FAQList() {
         </div>
       ))}
     </div>
+  );
+}
+
+/* ─── ContactForm ────────────────────────────────────────────────────── */
+
+function ContactForm() {
+  const [form, setForm] = useState({ nom: '', etablissement: '', contact: '', objet: 'devis', message: '' });
+  const [sent, setSent] = useState(false);
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const objetLabel: Record<string, string> = {
+      devis: 'Demande de devis',
+      demo: 'Demande de démonstration',
+      info: "Demande d'informations",
+      autre: 'Autre demande',
+    };
+    const text = encodeURIComponent(
+      `Bonjour MEDAARIS,\n\nJe suis *${form.nom}* de l'établissement *${form.etablissement}*.\n\nObjet : ${objetLabel[form.objet] ?? form.objet}${form.message ? `\n\nMessage : ${form.message}` : ''}\n\nContact : ${form.contact}`,
+    );
+    window.open(`https://wa.me/221785984396?text=${text}`, '_blank');
+    setSent(true);
+  }
+
+  if (sent) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-5 p-12 text-center">
+        <span className="flex h-14 w-14 items-center justify-center bg-[#ECFDF5]">
+          <Check size={28} className="text-[#10B981]" />
+        </span>
+        <h3 className="text-xl font-bold text-[#0B1526]">Demande envoyée&nbsp;!</h3>
+        <p className="max-w-[320px] text-[15px] leading-6 text-[#56617A]">
+          Notre équipe vous contactera très prochainement pour répondre à votre demande.
+        </p>
+        <button
+          type="button"
+          onClick={() => { setSent(false); setForm({ nom: '', etablissement: '', contact: '', objet: 'devis', message: '' }); }}
+          className="text-sm font-semibold text-[#1B62F0] hover:underline"
+        >
+          Envoyer une autre demande
+        </button>
+      </div>
+    );
+  }
+
+  const inputCls = 'w-full border border-[#DDE5F2] bg-[#F7F9FE] px-4 py-3 text-sm text-[#0B1526] outline-none transition focus:border-[#1B62F0] focus:bg-white';
+  const labelCls = 'mb-1.5 block text-sm font-semibold text-[#0B1526]';
+
+  return (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-8 lg:p-12">
+      <div>
+        <label className={labelCls}>Nom complet <span className="text-[#E53E3E]">*</span></label>
+        <input required name="nom" value={form.nom} onChange={handleChange} placeholder="Ex : Mamadou Diallo" className={inputCls} />
+      </div>
+      <div>
+        <label className={labelCls}>Établissement <span className="text-[#E53E3E]">*</span></label>
+        <input required name="etablissement" value={form.etablissement} onChange={handleChange} placeholder="Ex : Lycée Averroès" className={inputCls} />
+      </div>
+      <div>
+        <label className={labelCls}>Téléphone ou e-mail <span className="text-[#E53E3E]">*</span></label>
+        <input required name="contact" value={form.contact} onChange={handleChange} placeholder="Ex : +221 77 000 00 00" className={inputCls} />
+      </div>
+      <div>
+        <label className={labelCls}>Objet de la demande</label>
+        <select name="objet" value={form.objet} onChange={handleChange} className={inputCls}>
+          <option value="devis">Demander un devis</option>
+          <option value="demo">Demander une démonstration</option>
+          <option value="info">Obtenir plus d&apos;informations</option>
+          <option value="autre">Autre</option>
+        </select>
+      </div>
+      <div>
+        <label className={labelCls}>Message <span className="text-xs font-normal text-[#98A2B8]">(optionnel)</span></label>
+        <textarea name="message" value={form.message} onChange={handleChange} rows={3} placeholder="Décrivez brièvement votre besoin…" className={`${inputCls} resize-none`} />
+      </div>
+      <button type="submit" className="mt-1 bg-[#1B62F0] px-6 py-3.5 text-sm font-bold !text-white transition hover:bg-[#0A46A8] hover:!text-white">
+        Envoyer ma demande
+      </button>
+      <p className="text-xs text-[#98A2B8]">
+        En soumettant ce formulaire, vous serez redirigé vers WhatsApp pour finaliser l&apos;envoi.
+      </p>
+    </form>
   );
 }
 
@@ -1332,6 +1135,7 @@ function Footer() {
               <a href="mailto:medaaris.education@gmail.com" className="transition hover:text-white">medaaris.education@gmail.com</a>
               <a href="http://www.medaaris.com/"   className="transition hover:text-white">www.medaaris.com</a>
             </div>
+            
           </div>
 
           <div>
