@@ -214,7 +214,7 @@ export function LandingPage() {
   }, []);
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#F4F7FE] pt-[74px] text-[#0B1526]" style={{ zoom: 0.8 }}>
+    <main className="min-h-screen overflow-x-hidden bg-[#F4F7FE] pt-[74px] text-[#0B1526]">
 
       {/* ── Navbar ── */}
       <Navbar activeId={activeId} menuOpen={menuOpen} onToggle={() => setMenuOpen((v) => !v)} onClose={() => setMenuOpen(false)} onNav={(id) => setActiveId(id)} />
@@ -843,7 +843,7 @@ function Navbar({ activeId, menuOpen, onToggle, onClose, onNav }: { activeId: st
   };
 
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-[#DDE5F2] bg-white shadow-[0_1px_8px_rgba(15,23,42,0.05)]" style={{ zoom: 0.8 }}>
+    <header className="fixed left-0 top-0 z-50 w-full border-b border-[#DDE5F2] bg-white shadow-[0_1px_8px_rgba(15,23,42,0.05)]">
       <nav className="mx-auto flex max-w-[1240px] items-center justify-between gap-5 px-2 py-3 sm:px-3 lg:px-4">
         <a href="#accueil" onClick={() => handleClick('#accueil')} aria-label="MEDAARIS" className="flex-none">
           <Image src="/medaaris-logo.jpeg" alt="MEDAARIS" width={172} height={42} className="h-11 w-auto" priority />
@@ -856,8 +856,8 @@ function Navbar({ activeId, menuOpen, onToggle, onClose, onNav }: { activeId: st
               href={item.href}
               onClick={() => handleClick(item.href)}
               className={activeId === item.href.slice(1)
-                ? 'border-b-2 border-[#1B62F0] pb-1 text-[15px] font-semibold text-[#1B62F0] transition'
-                : 'border-b-2 border-transparent pb-1 text-[15px] font-semibold text-[#111827] transition hover:text-[#1B62F0]'}
+                ? 'border-b-2 border-[#1B62F0] pb-1 text-base font-semibold text-[#1B62F0] transition'
+                : 'border-b-2 border-transparent pb-1 text-base font-semibold text-[#111827] transition hover:text-[#1B62F0]'}
             >
               {item.label}
             </a>
@@ -865,7 +865,7 @@ function Navbar({ activeId, menuOpen, onToggle, onClose, onNav }: { activeId: st
         </div>
 
         <div className="hidden items-center gap-5 lg:flex">
-          <a href="#contact" onClick={() => handleClick('#contact')} className="bg-[#1B62F0] px-6 py-3 text-[15px] font-semibold !text-white transition hover:bg-[#0A46A8] hover:!text-white">
+          <a href="#contact" onClick={() => handleClick('#contact')} className="bg-[#1B62F0] px-6 py-3 text-base font-semibold !text-white transition hover:bg-[#0A46A8] hover:!text-white">
             Demander une démo
           </a>
         </div>
