@@ -782,7 +782,7 @@ export function LandingPage() {
           <div className="grid border border-[#E2E8F4] lg:grid-cols-[0.9fr_1.1fr]">
 
             {/* Panneau gauche — infos */}
-            <div className="flex flex-col justify-between bg-[#F4F7FE] p-8 lg:p-12">
+            <div className="flex flex-col justify-between bg-[#F4F7FE] p-5 sm:p-8 lg:p-12">
               <div>
                 <SectionEyebrow n="11" label="Contact" />
                 <h2 className="mb-4 text-[clamp(26px,3vw,40px)] font-bold leading-[1.08] tracking-tight text-[#0B1526]">
@@ -804,6 +804,7 @@ export function LandingPage() {
                 </div>
               </div>
               <div className="space-y-2">
+                <ContactRow icon={Phone}      label="Téléphone" value="22113543"                    href="tel:22113543" />
                 <ContactRow icon={Smartphone} label="WhatsApp"  value="+221 785984396"              href="https://wa.me/221785984396" highlight />
                 <ContactRow icon={Mail}       label="E-mail"    value="medaaris.education@gmail.com" href="mailto:medaaris.education@gmail.com" />
                 <ContactRow icon={Clock}      label="Horaires"  value="Lun – Sam : 08h – 18h"       href="#contact" />
@@ -1076,16 +1077,16 @@ function ContactRow({ icon: Icon, label, value, href, highlight }: {
   return (
     <a
       href={href}
-      className={`flex items-center gap-5 px-8 py-7 transition-colors hover:bg-[#F4F7FE] ${highlight ? 'bg-[#F8FAFF]' : ''}`}
+      className={`flex items-center gap-3 px-4 py-4 transition-colors hover:bg-[#F4F7FE] sm:gap-5 sm:px-8 sm:py-7 ${highlight ? 'bg-[#F8FAFF]' : ''}`}
     >
       <span className={`flex h-12 w-12 flex-none items-center justify-center ${highlight ? 'bg-[#1B62F0] text-white' : 'bg-[#EEF3FF] text-[#1B62F0]'}`}>
         <Icon size={22} />
       </span>
       <div className="flex-1 min-w-0">
         <div className="mb-0.5 text-xs font-bold uppercase tracking-widest text-[#98A2B8]">{label}</div>
-        <div className="truncate text-lg font-bold text-[#0B1526]">{value}</div>
+        <div className="break-words text-base font-bold text-[#0B1526] sm:text-lg">{value}</div>
       </div>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4CFDE" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <svg className="flex-none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4CFDE" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   );
 }
